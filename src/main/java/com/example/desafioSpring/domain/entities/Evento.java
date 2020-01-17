@@ -19,9 +19,9 @@ public class Evento {
     private Integer idEvento;
 
     @Column(nullable = false)
-    private Integer idEventStatus;
+    private Integer idEventoStatus;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private Integer idCategoriaEvento;
 
     @Column(nullable = false, length = 250)
