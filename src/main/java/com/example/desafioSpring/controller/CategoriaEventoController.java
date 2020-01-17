@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import com.example.desafioSpring.domain.dto.response.CategoriaEventoResponse;
 
 import com.example.desafioSpring.domain.mapper.CategoriaEventoMapper;
-import com.example.desafioSpring.services.Evento.CategoriaEventoService;
+import com.example.desafioSpring.services.CategoriaEventoService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package com.example.desafioSpring.domain.entities;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

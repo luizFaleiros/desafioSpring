@@ -1,4 +1,4 @@
-package com.example.desafioSpring.repository.evento;
+package com.example.desafioSpring.repository;
 
 
 import com.example.desafioSpring.domain.entities.CategoriaEvento;
