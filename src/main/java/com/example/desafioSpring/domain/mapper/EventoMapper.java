@@ -1,5 +1,6 @@
 package com.example.desafioSpring.domain.mapper;
 
+import com.example.desafioSpring.domain.dto.request.EventoRequest;
 import com.example.desafioSpring.domain.dto.response.EventoResponse;
 import com.example.desafioSpring.domain.entities.Evento;
 
@@ -21,7 +22,7 @@ public class EventoMapper {
         return mapper.map(input, EventoResponse.class);
     }
 
-    public Evento fromDto(Evento input) {
+    public Evento fromDto(EventoRequest input) {
         return mapper.map(input, Evento.class);
     }
 

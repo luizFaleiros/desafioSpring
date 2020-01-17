@@ -18,17 +18,17 @@ import javax.validation.constraints.NotEmpty;
 public class EventoRequest {
 
 
-
-    @NotEmpty
+    private Integer idEventoStatus;
+    
     private Integer idCategoriaEvento;
 
     @NotEmpty
     private String nome;
 
-    @NotEmpty
+    
     private Date DataHoraInicio;
 
-    @NotEmpty
+    
     private Date DataHoraFim;
     
     @NotEmpty
@@ -37,6 +37,5 @@ public class EventoRequest {
     @NotEmpty
     private String Descricao;
 
-    @NotEmpty
     private Integer LimiteVagas;
 }

@@ -7,22 +7,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name="Evento")
 public class Evento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEvento;
 
-    @Column(nullable = false)
-    private Integer idEventoStatus;
+    @ManyToOne
+    @JoinColumn(name = "IDEventoStatus",nullable = false)
+    private StatusEvento eventoStatus;
 
-    @Column(nullable = false)
-    private Integer idCategoriaEvento;
+    @ManyToOne
+    @JoinColumn(name="IdCategoriaEvento", nullable = false)
+    private CategoriaEvento categoriaEvento;
 
     @Column(nullable = false, length = 250)
     private String nome;
