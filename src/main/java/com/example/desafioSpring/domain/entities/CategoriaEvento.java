@@ -12,16 +12,13 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Client {
+public class CategoriaEvento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer IdEventoStatus;
 
-    @Column(nullable = false, length = 255)
-    private String name;
-
-    @Column(nullable = false, length = 255)
-    private String phone;
+    @Column(nullable = false, length = 250)
+    private String NomeStatus;
 
 } 

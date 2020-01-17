@@ -11,11 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ClientResponse {
+public class CategoriaEventoResponse {
 
-    private int id;
+    private Integer IdEventoStatus;
 
-    private String name;
+    private String NomeStatus;
 
-    private String phone;
 }
