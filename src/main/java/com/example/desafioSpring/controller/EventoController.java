@@ -24,44 +24,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 @RestController
 @RequestMapping("/eventos")
 public class EventoController {
 
-    private EventoService eventoService;
+	private EventoService eventoService;
 	private EventoMapper mapper;
 	private EventoStatusService eventoStatusService;
 	private CategoriaEventoService categoriaEventoService;
 
-    @Autowired
-	public EventoController(EventoService eventoService, EventoMapper eventoMapper,EventoStatusService eventoStatusService,CategoriaEventoService categoriaEventoService) {
+	@Autowired
+	public EventoController(EventoService eventoService, EventoMapper eventoMapper,
+			EventoStatusService eventoStatusService, CategoriaEventoService categoriaEventoService) {
 		this.eventoService = eventoService;
 		this.mapper = eventoMapper;
 		this.eventoStatusService = eventoStatusService;
 		this.categoriaEventoService = categoriaEventoService;
-    }
-    
-    @GetMapping
+	}
+
+	@GetMapping
 	public ResponseEntity<List<EventoResponse>> listEvento() {
-		return ResponseEntity.ok(eventoService.listEvento()
-							 .stream()
-							 .map(
-									 x-> mapper
-									 .toDto(x))
-									 .collect(
-										 Collectors
-										 .toList()
-										 )
-								);
+		return ResponseEntity
+				.ok(eventoService.listEvento().stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
 	}
 
 	@GetMapping(value = "/{id}")
-    public ResponseEntity<EventoResponse> getById(@PathVariable Integer id) {
-         return ResponseEntity.ok(mapper.toDto(eventoService.findById(id))) ;
+	public ResponseEntity<EventoResponse> getById(@PathVariable Integer id) {
+		return ResponseEntity.ok(mapper.toDto(eventoService.findById(id)));
 	}
-	
-    @PostMapping
+
+	@PostMapping
 	public ResponseEntity<EventoResponse> post(@Valid @RequestBody EventoRequest model) {
 		Evento evento = mapper.fromDto(model);
 		evento.setEventoStatus(eventoStatusService.findById(model.getIdEventoStatus()));
@@ -69,7 +61,8 @@ public class EventoController {
 		eventoService.cadastroEvento(evento);
 		return ResponseEntity.ok(mapper.toDto(evento));
 	}
-	@PutMapping(value="/{id}")
+
+	@PutMapping(value = "/{id}")
 	public ResponseEntity<EventoResponse> put(@Valid @PathVariable Integer id, @RequestBody EventoRequest model) {
 		Evento evento = eventoService.findById(id);
 		evento.setDataHoraFim(model.getDataHoraFim());
@@ -83,12 +76,13 @@ public class EventoController {
 		eventoService.cadastroEvento(evento);
 		return ResponseEntity.ok(mapper.toDto(evento));
 	}
-	@DeleteMapping(value="/{id}")
+
+	@DeleteMapping(value = "/{id}")
 	public Boolean delete(@PathVariable Integer id) {
-		if(eventoService.deleteEvento(id)){
+		if (eventoService.deleteEvento(id)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 }
