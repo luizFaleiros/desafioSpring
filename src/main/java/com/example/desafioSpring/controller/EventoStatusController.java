@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -34,6 +35,10 @@ public class EventoStatusController {
     @GetMapping
     public ResponseEntity<List<StatusEventoResponse>> listEventoStatus(){
         return ResponseEntity.ok(eventoStatusService.listStatusEvento().stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
+    }
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<StatusEventoResponse> getById(@PathVariable Integer id) {
+        return ResponseEntity.ok(mapper.toDto(eventoStatusService.findById(id)));
     }
     
 }

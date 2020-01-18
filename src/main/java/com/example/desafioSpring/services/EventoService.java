@@ -29,5 +29,10 @@ public class EventoService {
     public Evento cadastroEvento(Evento model) {
         return eventoRepository.save(model);
     }
+    public boolean deleteEvento(Integer id){
+        findById(id);
+        eventoRepository.deleteById(id);
+        return true;
+    }
 
 }

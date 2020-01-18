@@ -15,12 +15,15 @@ import com.example.desafioSpring.services.EventoStatusService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/eventos")
@@ -66,4 +69,26 @@ public class EventoController {
 		eventoService.cadastroEvento(evento);
 		return ResponseEntity.ok(mapper.toDto(evento));
 	}
+	@PutMapping(value="/{id}")
+	public ResponseEntity<EventoResponse> put(@Valid @PathVariable Integer id, @RequestBody EventoRequest model) {
+		Evento evento = eventoService.findById(id);
+		evento.setDataHoraFim(model.getDataHoraFim());
+		evento.setDataHoraInicio(model.getDataHoraInicio());
+		evento.setDescricao(model.getDescricao());
+		evento.setLimiteVagas(model.getLimiteVagas());
+		evento.setLocal(model.getLocal());
+		evento.setNome(model.getNome());
+		evento.setEventoStatus(eventoStatusService.findById(model.getIdEventoStatus()));
+		evento.setCategoriaEvento(categoriaEventoService.findById(model.getIdCategoriaEvento()));
+		eventoService.cadastroEvento(evento);
+		return ResponseEntity.ok(mapper.toDto(evento));
+	}
+	@DeleteMapping(value="/{id}")
+	public Boolean delete(@PathVariable Integer id) {
+		if(eventoService.deleteEvento(id)){
+			return true;
+		}
+		return false;
+	}
+	
 }
