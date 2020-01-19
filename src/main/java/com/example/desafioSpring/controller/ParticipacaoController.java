@@ -53,7 +53,7 @@ public class ParticipacaoController {
     }
 
     @PostMapping
-    public ResponseEntity postMethodName(@Valid @RequestBody ParticipacaoRequest model) {
+    public ResponseEntity<ParticipacaoResponse> postMethodName(@Valid @RequestBody ParticipacaoRequest model) {
         Participacao participacao = mapper.fromDto(model);
         participacao.setEvento(eventoService.findById(model.getIdEvento()));
         participacaoService.cadastrarParticipacao(participacao);

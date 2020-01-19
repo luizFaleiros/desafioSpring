@@ -3,10 +3,8 @@ package com.example.desafioSpring.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.domain.entities.Participacao;
 import com.example.desafioSpring.exception.DataNotFoundException;
-import com.example.desafioSpring.repository.EventoRepository;
 import com.example.desafioSpring.repository.ParticipacaoRepository;
 
 import org.springframework.stereotype.Service;
