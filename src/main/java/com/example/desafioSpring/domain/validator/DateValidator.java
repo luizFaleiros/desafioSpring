@@ -26,8 +26,11 @@ public class DateValidator implements ConstraintValidator<GetDateValidator, Even
             return false;
         }
         return true;
-	}
+    }
     
+    private Boolean validaData(Calendar ini, Calendar fim) {
+
+    }
 
 
 }

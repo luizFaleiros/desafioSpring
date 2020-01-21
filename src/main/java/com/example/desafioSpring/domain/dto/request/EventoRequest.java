@@ -18,8 +18,6 @@ import javax.validation.constraints.NotNull;
 @GetDateValidator
 public class EventoRequest {
 
-    @NotNull
-    private Integer idEventoStatus;
 
     @NotNull
     private Integer idCategoriaEvento;
