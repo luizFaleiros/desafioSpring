@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import com.example.desafioSpring.domain.dto.request.EventoRequest;
+import com.example.desafioSpring.domain.dto.request.EventoUpdate;
 import com.example.desafioSpring.domain.dto.response.EventoResponse;
 import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.domain.mapper.EventoMapper;
@@ -56,24 +57,15 @@ public class EventoController {
 	@PostMapping
 	public ResponseEntity<EventoResponse> post(@Valid @RequestBody EventoRequest model) {
 		Evento evento = mapper.fromDto(model);
-		evento.setEventoStatus(eventoStatusService.findById(model.getIdEventoStatus()));
-		evento.setCategoriaEvento(categoriaEventoService.findById(model.getIdCategoriaEvento()));
+		evento.setEventoStatus(eventoStatusService.findById(1));
+		evento.setCategoriaEvento(categoriaEventoService.findById(1));
 		eventoService.cadastroEvento(evento);
 		return ResponseEntity.ok(mapper.toDto(evento));
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<EventoResponse> put(@Valid @PathVariable Integer id, @RequestBody EventoRequest model) {
-		Evento evento = eventoService.findById(id);
-		evento.setDataHoraFim(model.getDataHoraFim());
-		evento.setDataHoraInicio(model.getDataHoraInicio());
-		evento.setDescricao(model.getDescricao());
-		evento.setLimiteVagas(model.getLimiteVagas());
-		evento.setLocal(model.getLocal());
-		evento.setNome(model.getNome());
-		evento.setEventoStatus(eventoStatusService.findById(model.getIdEventoStatus()));
-		evento.setCategoriaEvento(categoriaEventoService.findById(model.getIdCategoriaEvento()));
-		eventoService.cadastroEvento(evento);
+	public ResponseEntity<EventoResponse> put(@Valid @PathVariable Integer id, @RequestBody EventoUpdate model) {
+		Evento evento = eventoService.updateEvento(id, model);
 		return ResponseEntity.ok(mapper.toDto(evento));
 	}
 

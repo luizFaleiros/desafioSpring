@@ -40,5 +40,4 @@ public class EventoStatusController {
     public ResponseEntity<StatusEventoResponse> getById(@PathVariable Integer id) {
         return ResponseEntity.ok(mapper.toDto(eventoStatusService.findById(id)));
     }
-    
 }
