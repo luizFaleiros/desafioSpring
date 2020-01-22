@@ -47,12 +47,14 @@ public class DateValidatorTest {
 
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
+
     @Test
     public void should_not_beValid_whenDayFimAreNull() {
         EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(null).DataHoraInicio(new Date()).build();
 
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
+
     @Test
     public void should_not_beValid_whenBothDaysAreNull() {
         EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(null).DataHoraInicio(null).build();
@@ -71,6 +73,7 @@ public class DateValidatorTest {
         EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(fim).DataHoraInicio(ini).build();
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
+
     @Test
     public void Should_beNot_Valid_whenDayiniIsFinalDayIsDiferentOfInitDay() {
         Calendar c = Calendar.getInstance();
@@ -83,6 +86,7 @@ public class DateValidatorTest {
         EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(fim).DataHoraInicio(ini).build();
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
+
     @Test
     public void should_beValid() {
         Calendar c = Calendar.getInstance();
