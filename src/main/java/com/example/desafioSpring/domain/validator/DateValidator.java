@@ -1,7 +1,6 @@
 package com.example.desafioSpring.domain.validator;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -17,23 +16,24 @@ public class DateValidator implements ConstraintValidator<GetDateValidator, Even
     public boolean isValid(EventoRequest value, ConstraintValidatorContext context) {
         Calendar inicio = Calendar.getInstance();
         Calendar fim = Calendar.getInstance();
+        if (value.getDataHoraFim() == null || value.getDataHoraInicio() == null) {
+            return false;
+        }
         inicio.setTime(value.getDataHoraInicio());
         fim.setTime(value.getDataHoraFim());
-        if (inicio == null || fim == null) {
+        if (inicio.getTime().getTime() >= fim.getTime().getTime()) {
             return false;
         }
-        if (inicio.getTimeInMillis() >= fim.getTimeInMillis()) {
-            return false;
+        Boolean testaData = validaData(inicio, fim);
+        if (testaData) {
+            return true;
         }
-        if (!validaData(inicio, fim)) {
-            return false;
-        }
-        return true;
+        return false;
     }
-
+    
     private Boolean validaData(Calendar ini, Calendar fim) {
         Calendar c = Calendar.getInstance();
-        if (!(c.get(Calendar.DATE) >= ini.get(Calendar.DATE))) {
+        if ((c.get(Calendar.DATE) >= ini.get(Calendar.DATE))) {
             return false;
         }
         if ((ini.get(Calendar.DATE) != fim.get(Calendar.DATE)) || (ini.get(Calendar.MONTH) != fim.get(Calendar.MONTH))  || (ini.get(Calendar.YEAR) != fim.get(Calendar.YEAR)) ) {

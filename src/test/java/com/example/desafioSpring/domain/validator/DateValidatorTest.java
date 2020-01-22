@@ -1,11 +1,19 @@
 package com.example.desafioSpring.domain.validator;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.validation.ConstraintValidatorContext;
 
+import com.example.desafioSpring.domain.dto.request.EventoRequest;
+import com.example.desafioSpring.domain.entities.CategoriaEvento;
 import com.example.desafioSpring.domain.entities.Evento;
+import com.example.desafioSpring.domain.entities.StatusEvento;
 
+import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,8 +32,60 @@ public class DateValidatorTest {
     @InjectMocks
     DateValidator dateValidator;
 
+    private Date DataHoraInicio = new Date();
+
+    private Date DataHoraFim = new Date();
+
+    EventoRequest eventoRequest = EventoRequest.builder().DataHoraFim(DataHoraFim).DataHoraInicio(DataHoraInicio)
+            .build();
+
     @Test
-    public void should_not_beValid(){
-        assertFalse(dateValidator.isValid(null, constraintValidatorContext));
+    public void should_not_beValid_whenDaysAreTheSame() {
+
+        assertFalse(dateValidator.isValid(eventoRequest, constraintValidatorContext));
     }
+
+    @Test
+    public void should_not_beValid_whenDayAreNull() {
+        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(null).DataHoraInicio(null).build();
+
+        assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
+    }
+
+    @Test
+    public void Should_beNot_Valid_whenDayiniIsSmallerToDay() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, -2);
+        c.set(Calendar.HOUR, 10);
+        Date ini = c.getTime();
+        c.set(Calendar.HOUR, 11);
+        Date fim = c.getTime();
+        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(fim).DataHoraInicio(ini).build();
+        assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
+    }
+    @Test
+    public void Should_beNot_Valid_whenDayiniIsFinalDayIsDiferentOfInitDay() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, 2);
+        c.set(Calendar.HOUR, 10);
+        Date ini = c.getTime();
+        c.add(Calendar.DATE, 3);
+        c.set(Calendar.HOUR, 11);
+        Date fim = c.getTime();
+        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(fim).DataHoraInicio(ini).build();
+        assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
+    }
+    @Test
+    public void should_beValid() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, 2);
+        c.set(Calendar.HOUR, 10);
+        Date ini = c.getTime();
+        c.set(Calendar.HOUR, 11);
+        Date fim = c.getTime();
+        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(fim).DataHoraInicio(ini).build();
+        assertTrue(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
+
+    }
+
 }

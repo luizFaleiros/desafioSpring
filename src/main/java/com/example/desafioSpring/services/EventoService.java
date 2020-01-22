@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.desafioSpring.domain.dto.request.EventoUpdate;
-import com.example.desafioSpring.domain.entities.CategoriaEvento;
 import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.exception.DataNotFoundException;
 import com.example.desafioSpring.repository.EventoRepository;
