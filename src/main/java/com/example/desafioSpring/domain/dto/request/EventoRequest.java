@@ -20,24 +20,24 @@ public class EventoRequest {
 
 
     @NotNull
-    private Integer idCategoriaEvento;
+    protected Integer idCategoriaEvento;
 
     @NotEmpty
-    private String nome;
+    protected String nome;
 
     @NotNull
-    private Date DataHoraInicio;
+    protected Date DataHoraInicio;
 
     @NotNull
-    private Date DataHoraFim;
+    protected Date DataHoraFim;
 
     @NotEmpty
-    private String Local;
+    protected String Local;
 
     @NotEmpty
-    private String Descricao;
+    protected String Descricao;
 
     @NotNull
     @Min(value = 1)
-    private Integer LimiteVagas;
+    protected Integer LimiteVagas;
 }
