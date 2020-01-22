@@ -9,6 +9,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import com.example.desafioSpring.domain.dto.request.EventoUpdate;
 
+import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -35,9 +36,7 @@ public class CancelValidatorTest {
         Date ini = c.getTime();
         c.set(Calendar.HOUR, 11);
         Date fim = c.getTime();
-        testeEventoUpdate.setIdEventoStatus(4);
-        testeEventoUpdate.setDataHoraFim(fim);
-        testeEventoUpdate.setDataHoraInicio(ini);
+        testeEventoUpdate.builder().idEventoStatus(4).DataHoraInicio(ini.getTime()).build();
         assertTrue(cancelValidator.isValid(testeEventoUpdate, constraintValidatorContext));
     }
 }

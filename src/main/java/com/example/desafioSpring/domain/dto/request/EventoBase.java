@@ -6,12 +6,20 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.example.desafioSpring.domain.validator.GetDateValidator;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * EventoBase
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@GetDateValidator
 public abstract class EventoBase {
     @NotNull
     protected  Integer idCategoriaEvento;

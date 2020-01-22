@@ -2,8 +2,7 @@ package com.example.desafioSpring.domain.dto.request;
 
 import javax.validation.constraints.NotNull;
 
-import com.example.desafioSpring.domain.validator.GetCancel;
-
+import lombok.Builder;
 import lombok.Data;
 
 
@@ -11,8 +10,8 @@ import lombok.Data;
  * EventoUpdate
  */
 @Data
-@GetCancel
-public class EventoUpdate  extends EventoRequest{
+@Builder
+public class EventoUpdate  extends EventoBase{
 
     @NotNull
     private Integer idEventoStatus;
