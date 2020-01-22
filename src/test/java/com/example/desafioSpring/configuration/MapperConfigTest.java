@@ -1,4 +1,4 @@
-package com.example.project.configuration;
+package com.example.desafioSpring.configuration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

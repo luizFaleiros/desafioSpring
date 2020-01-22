@@ -1,5 +1,4 @@
-package com.example.project.configuration;
-
+package com.example.desafioSpring.configuration;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
@@ -15,4 +14,4 @@ public class SwaggerConfigTest {
     assertNotNull("Docket não pode ser null!", swaggerConfig.api());
   }
 
-} 
+}
