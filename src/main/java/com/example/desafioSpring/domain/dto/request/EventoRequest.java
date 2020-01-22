@@ -1,43 +1,43 @@
 package com.example.desafioSpring.domain.dto.request;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import com.example.desafioSpring.domain.validator.GetDateValidator;
+
 import java.util.Date;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import com.example.desafioSpring.domain.validator.GetDateValidator;
+
+
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @GetDateValidator
-public class EventoRequest {
+public class EventoRequest extends EventoBase {
+    
+    @Builder
+    public EventoRequest(Integer idCategoriaEvento, String nome, Date DataHoraInicio, Date DataHoraFim,String Local, String Descricao,Integer LimiteVagas, Integer idEventoStatus) {
+        super(idCategoriaEvento, nome, DataHoraInicio, DataHoraFim, Local,Descricao, LimiteVagas);
+    }
 
+    // @NotNull
+    // protected Integer idCategoriaEvento;
 
-    @NotNull
-    protected Integer idCategoriaEvento;
+    // @NotEmpty
+    // protected String nome;
 
-    @NotEmpty
-    protected String nome;
+    // @NotNull
+    // protected Date DataHoraInicio;
 
-    @NotNull
-    protected Date DataHoraInicio;
+    // @NotNull
+    // protected Date DataHoraFim;
 
-    @NotNull
-    protected Date DataHoraFim;
+    // @NotEmpty
+    // protected String Local;
 
-    @NotEmpty
-    protected String Local;
+    // @NotEmpty
+    // protected String Descricao;
 
-    @NotEmpty
-    protected String Descricao;
-
-    @NotNull
-    @Min(value = 1)
-    protected Integer LimiteVagas;
+    // @NotNull
+    // @Min(value = 1)
+    // protected Integer LimiteVagas;
 }

@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import com.example.desafioSpring.domain.validator.GetDateValidator;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,27 +19,27 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @GetDateValidator
-public abstract class EventoBase {
+public class EventoBase {
     @NotNull
-    protected  Integer idCategoriaEvento;
+    protected Integer idCategoriaEvento;
 
     @NotEmpty
-    protected  String nome;
+    protected String nome;
 
     @NotNull
-    protected  Date DataHoraInicio;
+    protected Date DataHoraInicio;
 
     @NotNull
-    protected  Date DataHoraFim;
+    protected Date DataHoraFim;
 
     @NotEmpty
-    protected  String Local;
+    protected String Local;
 
     @NotEmpty
-    protected  String Descricao;
+    protected String Descricao;
 
     @NotNull
     @Min(value = 1)
-    protected  Integer LimiteVagas;
-    
+    protected Integer LimiteVagas;
+
 }

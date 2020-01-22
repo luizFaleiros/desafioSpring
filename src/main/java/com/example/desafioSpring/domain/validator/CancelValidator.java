@@ -15,6 +15,15 @@ public class CancelValidator implements ConstraintValidator<GetDateValidator, Ev
 
     @Override
     public boolean isValid(EventoUpdate value, ConstraintValidatorContext context) {
+        if(value == null){
+            return false;
+        }
+        if(value.getDataHoraInicio() == null){
+            return false;
+        }
+        if(value.getIdEventoStatus() == null){
+            return false;
+        }
         Calendar daata = Calendar.getInstance();
         daata.setTime(new Date());
         Calendar inicio = Calendar.getInstance();
