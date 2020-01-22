@@ -36,7 +36,13 @@ public class DateValidator implements ConstraintValidator<GetDateValidator, Even
         if ((c.get(Calendar.DATE) >= ini.get(Calendar.DATE))) {
             return false;
         }
-        if ((ini.get(Calendar.DATE) != fim.get(Calendar.DATE)) || (ini.get(Calendar.MONTH) != fim.get(Calendar.MONTH))  || (ini.get(Calendar.YEAR) != fim.get(Calendar.YEAR)) ) {
+        Long dia = (24*60*60*1000)-1L;
+        ini.set(Calendar.HOUR, 0);
+        ini.set(Calendar.MINUTE, 0);
+        ini.set(Calendar.SECOND, 0);
+        ini.set(Calendar.MILLISECOND, 0);
+        Long date = ini.getTime().getTime() + dia;
+        if (fim.getTimeInMillis() >= date){
             return false;
         }
         return true;

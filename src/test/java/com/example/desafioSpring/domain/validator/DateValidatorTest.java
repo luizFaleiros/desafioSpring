@@ -9,11 +9,7 @@ import java.util.Date;
 import javax.validation.ConstraintValidatorContext;
 
 import com.example.desafioSpring.domain.dto.request.EventoRequest;
-import com.example.desafioSpring.domain.entities.CategoriaEvento;
-import com.example.desafioSpring.domain.entities.Evento;
-import com.example.desafioSpring.domain.entities.StatusEvento;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -46,7 +42,19 @@ public class DateValidatorTest {
     }
 
     @Test
-    public void should_not_beValid_whenDayAreNull() {
+    public void should_not_beValid_whenDayIniAreNull() {
+        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(new Date()).DataHoraInicio(null).build();
+
+        assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
+    }
+    @Test
+    public void should_not_beValid_whenDayFimAreNull() {
+        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(null).DataHoraInicio(new Date()).build();
+
+        assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
+    }
+    @Test
+    public void should_not_beValid_whenBothDaysAreNull() {
         EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(null).DataHoraInicio(null).build();
 
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
@@ -85,7 +93,6 @@ public class DateValidatorTest {
         Date fim = c.getTime();
         EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(fim).DataHoraInicio(ini).build();
         assertTrue(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
-
     }
 
 }
