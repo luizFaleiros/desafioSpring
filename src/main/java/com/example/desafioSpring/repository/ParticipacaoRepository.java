@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ParticipacaoRepository extends JpaRepository<Participacao, Integer>{
-
+    @Query(nativeQuery = true, value = " SELECT COUNT(*) AS [QntPessoas] FROM [dbo].[Participacao] WHERE [IdEvento] = :id GROUP BY [idEvento];")
+    Integer qntInscritos(Integer id);
     
 }

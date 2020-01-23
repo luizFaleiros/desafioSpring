@@ -59,9 +59,10 @@ public class ParticipacaoController {
         participacaoService.cadastrarParticipacao(participacao);
         return ResponseEntity.ok(mapper.toDto(participacao));
     }
-    
+
     @PutMapping(value = "/{id}")
-	public ResponseEntity<ParticipacaoResponse> put(@Valid @PathVariable Integer id, @RequestBody ParticipacaoRequest model) {
+    public ResponseEntity<ParticipacaoResponse> put(@Valid @PathVariable Integer id,
+            @RequestBody ParticipacaoRequest model) {
         Participacao participacao = participacaoService.findById(id);
         participacao.setEvento(eventoService.findById(model.getIdEvento()));
         participacao.setComentario(model.getComentario());
@@ -71,13 +72,13 @@ public class ParticipacaoController {
         participacaoService.cadastrarParticipacao(participacao);
         return ResponseEntity.ok(mapper.toDto(participacao));
     }
-    
+
     @DeleteMapping(value = "/{id}")
-	public Boolean delete(@PathVariable Integer id) {
-		if (participacaoService.deletarParticipacao(id)) {
-			return true;
-		}
-		return false;
-	}
+    public Boolean delete(@PathVariable Integer id) {
+        if (participacaoService.deletarParticipacao(id)) {
+            return true;
+        }
+        return false;
+    }
 
 }
