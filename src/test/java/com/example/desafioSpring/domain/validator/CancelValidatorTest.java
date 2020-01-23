@@ -62,7 +62,12 @@ public class CancelValidatorTest {
     }
     @Test
     public void should_beNotValid_whenStatusIsNull() {
-        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(null).DataHoraFim(null).DataHoraInicio(null)
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, 3);
+        c.set(Calendar.HOUR, 10);
+        c.set(Calendar.HOUR, 11);
+        Date fim = c.getTime();
+        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(null).DataHoraFim(new Date()).DataHoraInicio(fim)
                 .build();
         assertFalse(cancelValidator.isValid(testeEventoUpdate, constraintValidatorContext));
     }
