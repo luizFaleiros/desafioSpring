@@ -32,12 +32,16 @@ public class Participacao {
     @ManyToOne
     @JoinColumn(name="IdEvento", nullable = false)
     private Evento evento;
+
     @Column(nullable = false)
     private String loginParticipante;
+
     @Column(nullable = false)
     private Boolean flagPresente;
+
     @Column
     private Integer Nota;
+    
     @Column(length = 1000)
     private String comentario;
     

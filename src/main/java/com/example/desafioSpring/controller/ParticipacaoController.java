@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import com.example.desafioSpring.domain.dto.request.ParticipacaoRequest;
+import com.example.desafioSpring.domain.dto.request.ParticipacaoStatusFlagUpdate;
 import com.example.desafioSpring.domain.dto.response.ParticipacaoResponse;
 import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.domain.entities.Participacao;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
@@ -66,18 +68,16 @@ public class ParticipacaoController {
         return ResponseEntity.badRequest().body(ParticipacaoResponse.builder().build());
     }
 
-    // @PutMapping(value = "/{id}")
-    // public ResponseEntity<ParticipacaoResponse> put(@Valid @PathVariable Integer
-    // id,
-    // @RequestBody ParticipacaoRequest model) {
-    // }
+    @PutMapping(value = "/presente/{id}")
+    public ResponseEntity<ParticipacaoResponse> putPresente(@PathVariable Integer id, @Valid @RequestBody ParticipacaoStatusFlagUpdate model) {
+        Participacao participacao = mapper.fromDtoFlagUpdate(model);
+        return ResponseEntity.ok(mapper.toDto(participacao));
+    }
 
     @DeleteMapping(value = "/{id}")
     public Boolean delete(@PathVariable Integer id) {
-        if (participacaoService.deletarParticipacao(id)) {
-            return true;
-        }
-        return false;
+        participacaoService.deletarParticipacao(id);
+        return true;
     }
 
     @GetMapping(value = "/quantidade/{id}")

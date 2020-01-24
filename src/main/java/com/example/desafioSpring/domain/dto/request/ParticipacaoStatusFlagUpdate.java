@@ -1,25 +1,23 @@
 package com.example.desafioSpring.domain.dto.request;
 
-import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
-
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 /**
- * EventoUpdate
+ * ParticipacaoRequest
  */
 @Data
-@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+public class ParticipacaoStatusFlagUpdate {
 
-public class EventoUpdate extends EventoBase {
+    // private Integer IdParticipacao;
     @NotNull
-    private Integer idEventoStatus;
-
+    private Boolean flagPresente;
 }

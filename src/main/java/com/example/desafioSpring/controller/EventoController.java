@@ -71,10 +71,8 @@ public class EventoController {
 
 	@DeleteMapping(value = "/{id}")
 	public Boolean delete(@PathVariable Integer id) {
-		if (eventoService.deleteEvento(id)) {
-			return true;
-		}
-		return false;
+		eventoService.deleteEvento(id);
+		return true;
 	}
 
 }

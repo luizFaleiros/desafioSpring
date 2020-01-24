@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.example.desafioSpring.domain.dto.request.EventoUpdate;
 import com.example.desafioSpring.domain.entities.Evento;
+import com.example.desafioSpring.exception.DataCantDeleteException;
 import com.example.desafioSpring.exception.DataNotFoundException;
 import com.example.desafioSpring.repository.EventoRepository;
 
@@ -27,6 +28,7 @@ public class EventoService {
     public List<Evento> listEvento() {
         return eventoRepository.findAll();
     }
+    
 
     public Evento findById(Integer id) {
         Optional<Evento> evento = eventoRepository.findById(id);
@@ -39,8 +41,12 @@ public class EventoService {
 
     public boolean deleteEvento(Integer id) {
         findById(id);
-        eventoRepository.deleteById(id);
-        return true;
+        try {
+            eventoRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+           throw new DataCantDeleteException("Não pode ser deletado");
+        }
     }
 
     public Evento updateEvento(Integer id, EventoUpdate model) {

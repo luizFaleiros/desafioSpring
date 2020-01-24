@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.desafioSpring.domain.entities.Participacao;
+import com.example.desafioSpring.exception.DataCantDeleteException;
+import com.example.desafioSpring.exception.DataDeletedException;
 import com.example.desafioSpring.exception.DataNotFoundException;
 import com.example.desafioSpring.repository.ParticipacaoRepository;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * ParticipacaoService
  */
@@ -25,23 +28,29 @@ public class ParticipacaoService {
     public List<Participacao> listParticipacao() {
         return participacaoRepository.findAll();
     }
+
     public Participacao findById(Integer id) {
         Optional<Participacao> participacao = participacaoRepository.findById(id);
         return participacao.orElseThrow(() -> new DataNotFoundException("Participacao nao Encontrada"));
     }
 
-    public Participacao cadastrarParticipacao(Participacao model){
+    public Participacao cadastrarParticipacao(Participacao model) {
         model.setFlagPresente(false);
         model.setNota(null);
         model.setComentario(null);
         return participacaoRepository.save(model);
     }
-    public boolean deletarParticipacao(Integer id) {
+
+    public void deletarParticipacao(Integer id) {
         findById(id);
-        participacaoRepository.deleteById(id);
-        return true;
+        try {
+            participacaoRepository.deleteById(id);
+        } catch (Exception e) {
+            new DataCantDeleteException("Impossibru",e);
+        }
     }
-    public Integer qntParticipantes(Integer id){
+
+    public Integer qntParticipantes(Integer id) {
         return (Integer) participacaoRepository.qntInscritos(id);
     }
 }
