@@ -40,7 +40,7 @@ public class Participacao {
     private Boolean flagPresente;
 
     @Column
-    private Integer Nota;
+    private Integer nota;
     
     @Column(length = 1000)
     private String comentario;

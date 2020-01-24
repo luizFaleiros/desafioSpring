@@ -1,7 +1,7 @@
 package com.example.desafioSpring.domain.mapper;
 
-import com.example.desafioSpring.domain.dto.request.EventoRequest;
-import com.example.desafioSpring.domain.dto.response.EventoResponse;
+import com.example.desafioSpring.domain.dto.evento.request.EventoRequest;
+import com.example.desafioSpring.domain.dto.evento.response.EventoResponse;
 import com.example.desafioSpring.domain.entities.Evento;
 
 import org.modelmapper.ModelMapper;

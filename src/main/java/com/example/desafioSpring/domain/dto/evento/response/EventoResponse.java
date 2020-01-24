@@ -1,4 +1,4 @@
-package com.example.desafioSpring.domain.dto.response;
+package com.example.desafioSpring.domain.dto.evento.response;
 
 import java.util.Date;
 

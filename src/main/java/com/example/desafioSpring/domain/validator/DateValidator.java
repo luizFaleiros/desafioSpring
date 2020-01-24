@@ -5,7 +5,7 @@ import java.util.Calendar;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.example.desafioSpring.domain.dto.request.EventoRequest;
+import com.example.desafioSpring.domain.dto.evento.request.EventoRequest;
 
 /**
  * Datealidator

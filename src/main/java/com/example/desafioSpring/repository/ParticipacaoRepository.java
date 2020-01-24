@@ -14,7 +14,7 @@ public interface ParticipacaoRepository extends JpaRepository<Participacao, Inte
     @Query(nativeQuery = true, value = " SELECT COUNT(*) AS [QntPessoas] FROM [dbo].[Participacao] WHERE [IdEvento] = :id GROUP BY [idEvento]")
     Integer qntInscritos(Integer id);
 
-    @Query(nativeQuery = true, value = "SELECT COUNT(*) AS [QntPessoas] FROM [dbo].[Participacao] WHERE [IdEvento] = :id  AND [LoginParticipante]Like ':login' GROUP BY [idEvento];")
-    String JaInscrito(Integer id, String login);
+    @Query(nativeQuery = true, value = "SELECT COUNT(*) AS [QntPessoas] FROM [dbo].[Participacao] WHERE [IdEvento] = :id  AND [LoginParticipante]Like ':login' GROUP BY [idEvento]")
+    Integer JaInscrito(Integer id, String login);
 
 }

@@ -1,4 +1,4 @@
-package com.example.desafioSpring.domain.dto.request;
+package com.example.desafioSpring.domain.dto.participacao.request;
 
 
 import javax.validation.constraints.NotNull;

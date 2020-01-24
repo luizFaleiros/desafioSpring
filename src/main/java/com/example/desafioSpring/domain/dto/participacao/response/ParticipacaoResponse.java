@@ -1,4 +1,4 @@
-package com.example.desafioSpring.domain.dto.response;
+package com.example.desafioSpring.domain.dto.participacao.response;
 
 import com.example.desafioSpring.domain.entities.Evento;
 
@@ -17,19 +17,19 @@ import lombok.NoArgsConstructor;
 public class ParticipacaoResponse {
 
     
-    private Integer IdParticipacao;
+    private Integer idParticipacao;
 
 
     private Evento evento;
 
 
-    private String LoginParticipante;
+    private String loginParticipante;
     
 
-    private Boolean FlagPresente;
+    private Boolean flagPresente;
 
-    private Integer Nota;
+    private Integer nota;
 
-    private String Comentario;
+    private String comentario;
     
 }

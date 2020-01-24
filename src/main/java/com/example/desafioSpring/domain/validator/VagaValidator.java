@@ -3,7 +3,8 @@ package com.example.desafioSpring.domain.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.example.desafioSpring.domain.dto.request.ParticipacaoRequest;
+import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoRequest;
+
 
 /**
  * VagaValidator

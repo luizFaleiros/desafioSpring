@@ -1,8 +1,8 @@
 package com.example.desafioSpring.domain.mapper;
 
-import com.example.desafioSpring.domain.dto.request.ParticipacaoRequest;
-import com.example.desafioSpring.domain.dto.request.ParticipacaoStatusFlagUpdate;
-import com.example.desafioSpring.domain.dto.response.ParticipacaoResponse;
+import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoRequest;
+import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoStatusFlagUpdate;
+import com.example.desafioSpring.domain.dto.participacao.response.ParticipacaoResponse;
 import com.example.desafioSpring.domain.entities.Participacao;
 
 import org.modelmapper.ModelMapper;

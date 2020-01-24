@@ -8,7 +8,7 @@ import java.util.Date;
 
 import javax.validation.ConstraintValidatorContext;
 
-import com.example.desafioSpring.domain.dto.request.EventoRequest;
+import com.example.desafioSpring.domain.dto.evento.request.EventoRequest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

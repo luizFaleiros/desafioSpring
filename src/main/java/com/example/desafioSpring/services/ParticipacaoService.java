@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.desafioSpring.domain.entities.Participacao;
+import com.example.desafioSpring.exception.DataCantBeCreate;
 import com.example.desafioSpring.exception.DataCantDeleteException;
 import com.example.desafioSpring.exception.DataDeletedException;
 import com.example.desafioSpring.exception.DataNotFoundException;
@@ -35,6 +36,9 @@ public class ParticipacaoService {
     }
 
     public Participacao cadastrarParticipacao(Participacao model) {
+        if(!this.JaInscrito(model.getEvento().getIdEvento(),model.getLoginParticipante())){
+            throw new DataCantBeCreate("Usuario ja cadastrado");
+        }
         model.setFlagPresente(false);
         model.setNota(null);
         model.setComentario(null);
@@ -46,11 +50,18 @@ public class ParticipacaoService {
         try {
             participacaoRepository.deleteById(id);
         } catch (Exception e) {
-            new DataCantDeleteException("Impossibru",e);
+            new DataCantDeleteException("Impossibru", e);
         }
     }
 
     public Integer qntParticipantes(Integer id) {
-        return (Integer) participacaoRepository.qntInscritos(id);
+        return participacaoRepository.qntInscritos(id);
+    }
+
+    public Boolean JaInscrito(Integer id, String login) {
+        if (participacaoRepository.JaInscrito(id, login) != null) {
+            return false;
+        }
+        return true;
     }
 }

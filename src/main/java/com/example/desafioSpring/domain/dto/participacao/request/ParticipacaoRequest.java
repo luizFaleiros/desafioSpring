@@ -1,5 +1,6 @@
-package com.example.desafioSpring.domain.dto.request;
+package com.example.desafioSpring.domain.dto.participacao.request;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -20,8 +21,9 @@ public class ParticipacaoRequest {
     // private Integer IdParticipacao;
 
     @NotNull
-    private Integer IdEvento;
+    @Min(value = 1)
+    private Integer idEvento;
 
     @NotEmpty
-    private String LoginParticipante;
+    private String loginParticipante;
 }

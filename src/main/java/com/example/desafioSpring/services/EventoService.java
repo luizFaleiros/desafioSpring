@@ -3,7 +3,7 @@ package com.example.desafioSpring.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.desafioSpring.domain.dto.request.EventoUpdate;
+import com.example.desafioSpring.domain.dto.evento.request.EventoUpdate;
 import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.exception.DataCantDeleteException;
 import com.example.desafioSpring.exception.DataNotFoundException;
@@ -19,7 +19,8 @@ public class EventoService {
     private CategoriaEventoService categoriaEventoService;
 
     @Autowired
-    public EventoService(EventoRepository eventoRepository,EventoStatusService eventoStatusService,CategoriaEventoService categoriaEventoService) {
+    public EventoService(EventoRepository eventoRepository, EventoStatusService eventoStatusService,
+            CategoriaEventoService categoriaEventoService) {
         this.eventoRepository = eventoRepository;
         this.eventoStatusService = eventoStatusService;
         this.categoriaEventoService = categoriaEventoService;
@@ -28,7 +29,6 @@ public class EventoService {
     public List<Evento> listEvento() {
         return eventoRepository.findAll();
     }
-    
 
     public Evento findById(Integer id) {
         Optional<Evento> evento = eventoRepository.findById(id);
@@ -39,13 +39,15 @@ public class EventoService {
         return eventoRepository.save(model);
     }
 
+    
+
     public boolean deleteEvento(Integer id) {
         findById(id);
         try {
             eventoRepository.deleteById(id);
             return true;
         } catch (Exception e) {
-           throw new DataCantDeleteException("Não pode ser deletado");
+            throw new DataCantDeleteException("Não pode ser deletado");
         }
     }
 

@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import com.example.desafioSpring.domain.dto.request.ParticipacaoRequest;
-import com.example.desafioSpring.domain.dto.request.ParticipacaoStatusFlagUpdate;
-import com.example.desafioSpring.domain.dto.response.ParticipacaoResponse;
+import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoRequest;
+import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoStatusFlagUpdate;
+import com.example.desafioSpring.domain.dto.participacao.response.ParticipacaoResponse;
 import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.domain.entities.Participacao;
 import com.example.desafioSpring.domain.mapper.ParticipacaoMapper;

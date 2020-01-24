@@ -6,7 +6,8 @@ import java.util.Date;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.example.desafioSpring.domain.dto.request.EventoUpdate;
+import com.example.desafioSpring.domain.dto.evento.request.EventoUpdate;
+
 
 /**
  * Datealidator
