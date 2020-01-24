@@ -27,18 +27,18 @@ public class Participacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IdParticipacao;
+    private Integer idParticipacao;
 
     @ManyToOne
     @JoinColumn(name="IdEvento", nullable = false)
     private Evento evento;
     @Column(nullable = false)
-    private String LoginParticipante;
+    private String loginParticipante;
     @Column(nullable = false)
-    private Boolean FlagPresente;
+    private Boolean flagPresente;
     @Column
     private Integer Nota;
     @Column(length = 1000)
-    private String Comentario;
+    private String comentario;
     
 }

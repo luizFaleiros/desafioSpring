@@ -31,12 +31,17 @@ public class ParticipacaoService {
     }
 
     public Participacao cadastrarParticipacao(Participacao model){
+        model.setFlagPresente(false);
+        model.setNota(null);
+        model.setComentario(null);
         return participacaoRepository.save(model);
     }
     public boolean deletarParticipacao(Integer id) {
         findById(id);
         participacaoRepository.deleteById(id);
         return true;
-        
+    }
+    public Integer qntParticipantes(Integer id){
+        return (Integer) participacaoRepository.qntInscritos(id);
     }
 }

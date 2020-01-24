@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="Evento")
+@Table(name = "Evento")
 public class Evento {
 
     @Id
@@ -29,28 +29,28 @@ public class Evento {
     private Integer idEvento;
 
     @ManyToOne
-    @JoinColumn(name = "IDEventoStatus",nullable = false)
+    @JoinColumn(name = "IDEventoStatus", nullable = false)
     private StatusEvento eventoStatus;
 
     @ManyToOne
-    @JoinColumn(name="IdCategoriaEvento", nullable = false)
+    @JoinColumn(name = "IdCategoriaEvento", nullable = false)
     private CategoriaEvento categoriaEvento;
 
     @Column(nullable = false, length = 250)
     private String nome;
 
     @Column(nullable = false)
-    private Date DataHoraInicio;
+    private Date dataHoraInicio;
 
     @Column(nullable = false)
-    private Date DataHoraFim;
-    
+    private Date dataHoraFim;
+
     @Column(nullable = false, length = 250)
-    private String Local;
+    private String local;
 
     @Column(nullable = false, length = 1000)
-    private String Descricao;
+    private String descricao;
 
     @Column(nullable = false)
-    private Integer LimiteVagas;
-} 
+    private Integer limiteVagas;
+}

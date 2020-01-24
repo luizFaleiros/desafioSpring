@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
- public class ParticipacaoRequest {
+public class ParticipacaoRequest {
 
     // private Integer IdParticipacao;
 
@@ -25,13 +25,4 @@ import lombok.NoArgsConstructor;
 
     @NotEmpty
     private String LoginParticipante;
-    
-    @NotNull
-    private Boolean FlagPresente;
-    
-    @NotNull
-    private Integer Nota;
-
-    @Size(max = 1000)
-    private String Comentario;
 }

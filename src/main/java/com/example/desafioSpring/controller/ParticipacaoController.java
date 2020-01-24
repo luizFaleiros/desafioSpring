@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import com.example.desafioSpring.domain.dto.request.ParticipacaoRequest;
 import com.example.desafioSpring.domain.dto.response.ParticipacaoResponse;
+import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.domain.entities.Participacao;
 import com.example.desafioSpring.domain.mapper.ParticipacaoMapper;
 import com.example.desafioSpring.services.EventoService;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
@@ -55,23 +55,22 @@ public class ParticipacaoController {
     @PostMapping
     public ResponseEntity<ParticipacaoResponse> postMethodName(@Valid @RequestBody ParticipacaoRequest model) {
         Participacao participacao = mapper.fromDto(model);
-        participacao.setEvento(eventoService.findById(model.getIdEvento()));
-        participacaoService.cadastrarParticipacao(participacao);
-        return ResponseEntity.ok(mapper.toDto(participacao));
+        Evento evento = eventoService.findById(model.getIdEvento());
+        Integer limite = evento.getLimiteVagas();
+        Integer qnt = participacaoService.qntParticipantes(model.getIdEvento());
+        if (qnt == null || limite > qnt) {
+            participacao.setEvento(evento);
+            participacaoService.cadastrarParticipacao(participacao);
+            return ResponseEntity.ok(mapper.toDto(participacao));
+        }
+        return ResponseEntity.badRequest().body(ParticipacaoResponse.builder().build());
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<ParticipacaoResponse> put(@Valid @PathVariable Integer id,
-            @RequestBody ParticipacaoRequest model) {
-        Participacao participacao = participacaoService.findById(id);
-        participacao.setEvento(eventoService.findById(model.getIdEvento()));
-        participacao.setComentario(model.getComentario());
-        participacao.setFlagPresente(model.getFlagPresente());
-        participacao.setLoginParticipante(model.getLoginParticipante());
-        participacao.setNota(model.getNota());
-        participacaoService.cadastrarParticipacao(participacao);
-        return ResponseEntity.ok(mapper.toDto(participacao));
-    }
+    // @PutMapping(value = "/{id}")
+    // public ResponseEntity<ParticipacaoResponse> put(@Valid @PathVariable Integer
+    // id,
+    // @RequestBody ParticipacaoRequest model) {
+    // }
 
     @DeleteMapping(value = "/{id}")
     public Boolean delete(@PathVariable Integer id) {
@@ -79,6 +78,13 @@ public class ParticipacaoController {
             return true;
         }
         return false;
+    }
+
+    @GetMapping(value = "/quantidade/{id}")
+    public Integer getQntById(@PathVariable Integer id) {
+        eventoService.findById(id);
+        Integer qnt = participacaoService.qntParticipantes(id);
+        return qnt != null ? qnt : 0;
     }
 
 }
