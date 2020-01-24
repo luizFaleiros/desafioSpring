@@ -11,15 +11,14 @@ import com.example.desafioSpring.domain.validator.GetDateValidator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  * EventoBase
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@GetDateValidator
-public class EventoBase {
+@SuperBuilder
+public abstract class EventoBase {
     @NotNull
     protected Integer idCategoriaEvento;
 
