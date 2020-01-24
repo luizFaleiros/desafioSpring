@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
+import com.example.desafioSpring.domain.validator.GetCancel;
+import com.example.desafioSpring.domain.validator.GetInitial;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +19,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-
+@GetCancel
+@GetInitial
 public class EventoUpdate extends EventoBase {
     @NotNull
     private Integer idEventoStatus;
