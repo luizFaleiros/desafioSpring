@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="Participacao")
+@Table(name = "Participacao")
 public class Participacao {
 
     @Id
@@ -30,7 +30,7 @@ public class Participacao {
     private Integer idParticipacao;
 
     @ManyToOne
-    @JoinColumn(name="IdEvento", nullable = false)
+    @JoinColumn(name = "IdEvento", nullable = false)
     private Evento evento;
 
     @Column(nullable = false)
@@ -41,8 +41,8 @@ public class Participacao {
 
     @Column
     private Integer nota;
-    
+
     @Column(length = 1000)
     private String comentario;
-    
+
 }

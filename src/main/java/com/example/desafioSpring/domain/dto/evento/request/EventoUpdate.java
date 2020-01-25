@@ -3,8 +3,8 @@ package com.example.desafioSpring.domain.dto.evento.request;
 
 import javax.validation.constraints.NotNull;
 
-import com.example.desafioSpring.domain.validator.GetCancel;
-import com.example.desafioSpring.domain.validator.GetInitial;
+import com.example.desafioSpring.domain.validator.evento.GetCancel;
+import com.example.desafioSpring.domain.validator.evento.GetInitial;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

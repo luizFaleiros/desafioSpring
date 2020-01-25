@@ -1,4 +1,4 @@
-package com.example.desafioSpring.domain.validator;
+package com.example.desafioSpring.domain.validator.evento;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -10,17 +10,16 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * Getancel
+ * GetDateValidator
  */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = CancelValidator.class)
+@Constraint(validatedBy = DateValidator.class)
 @Documented
-public @interface GetCancel {
-
+public @interface GetDateValidator {
     String message() default "Data invalida.";
-
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+
 }

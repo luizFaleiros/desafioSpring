@@ -1,4 +1,4 @@
-package com.example.desafioSpring.domain.validator;
+package com.example.desafioSpring.domain.validator.evento;
 
 import javax.validation.Payload;
 

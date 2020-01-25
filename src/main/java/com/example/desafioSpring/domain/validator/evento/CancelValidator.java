@@ -1,4 +1,4 @@
-package com.example.desafioSpring.domain.validator;
+package com.example.desafioSpring.domain.validator.evento;
 
 import java.util.Calendar;
 import java.util.Date;

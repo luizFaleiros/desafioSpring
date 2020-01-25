@@ -1,4 +1,4 @@
-package com.example.desafioSpring.domain.validator;
+package com.example.desafioSpring.domain.validator.evento;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.validation.ConstraintValidatorContext;
 
 import com.example.desafioSpring.domain.dto.evento.request.EventoUpdate;
+import com.example.desafioSpring.domain.validator.evento.CancelValidator;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

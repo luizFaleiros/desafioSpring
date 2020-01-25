@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 /**
  * ParticipacaoController
  */
@@ -86,5 +87,6 @@ public class ParticipacaoController {
         Integer qnt = participacaoService.qntParticipantes(id);
         return qnt != null ? qnt : 0;
     }
+
 
 }
