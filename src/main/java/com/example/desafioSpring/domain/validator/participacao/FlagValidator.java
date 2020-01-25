@@ -19,10 +19,10 @@ public class FlagValidator implements ConstraintValidator<GetFlag, ParticipacaoS
     public boolean isValid(ParticipacaoStatusFlagUpdate value, ConstraintValidatorContext context) {
         Evento evento = eventoService.findById(value.getIdEvento());
         Calendar c = Calendar.getInstance();
-        if (evento.getDataHoraInicio().getTime() < c.getTimeInMillis()) {
-            return false;
+        if (evento.getDataHoraInicio().getTime() > c.getTimeInMillis()) {
+            return true;
         }
-        return true;
+        return false;
     }
 
 }
