@@ -6,7 +6,6 @@ import java.util.Optional;
 import com.example.desafioSpring.domain.entities.Participacao;
 import com.example.desafioSpring.exception.DataCantBeCreate;
 import com.example.desafioSpring.exception.DataCantDeleteException;
-import com.example.desafioSpring.exception.DataDeletedException;
 import com.example.desafioSpring.exception.DataNotFoundException;
 import com.example.desafioSpring.repository.ParticipacaoRepository;
 

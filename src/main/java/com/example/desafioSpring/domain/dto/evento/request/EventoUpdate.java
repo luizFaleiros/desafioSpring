@@ -1,6 +1,5 @@
 package com.example.desafioSpring.domain.dto.evento.request;
 
-import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
