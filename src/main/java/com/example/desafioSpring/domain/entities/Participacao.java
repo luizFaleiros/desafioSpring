@@ -33,7 +33,7 @@ public class Participacao {
     @JoinColumn(name = "IdEvento", nullable = false)
     private Evento evento;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 250)
     private String loginParticipante;
 
     @Column(nullable = false)

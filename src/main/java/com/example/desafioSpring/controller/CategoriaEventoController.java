@@ -20,25 +20,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/categoria-eventos")
 public class CategoriaEventoController {
 
-    private CategoriaEventoService categoriaEventoService;
-    private CategoriaEventoMapper mapper;
+	private CategoriaEventoService categoriaEventoService;
+	private CategoriaEventoMapper mapper;
 
-    @Autowired
-	public CategoriaEventoController(CategoriaEventoService categoriaEventoService, CategoriaEventoMapper categoriaEventoMapper) {
+	@Autowired
+	public CategoriaEventoController(CategoriaEventoService categoriaEventoService,
+			CategoriaEventoMapper categoriaEventoMapper) {
 		this.categoriaEventoService = categoriaEventoService;
 		this.mapper = categoriaEventoMapper;
-    }
-    
-    @GetMapping
-	public ResponseEntity<List<CategoriaEventoResponse>> listCategoriaEvento() {
-		return ResponseEntity.ok(categoriaEventoService.listCategoriaEvento().stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
-							 
 	}
 
-	@GetMapping(value="/{id}")
+	@GetMapping
+	public ResponseEntity<List<CategoriaEventoResponse>> listCategoriaEvento() {
+		return ResponseEntity.ok(categoriaEventoService.listCategoriaEvento().stream().map(x -> mapper.toDto(x))
+				.collect(Collectors.toList()));
+
+	}
+
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<CategoriaEventoResponse> getById(@PathVariable Integer id) {
 		return ResponseEntity.ok(mapper.toDto(categoriaEventoService.findById(id)));
-		
+
 	}
-    
+
 }
