@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import com.example.desafioSpring.domain.validator.evento.GetCancel;
 import com.example.desafioSpring.domain.validator.evento.GetInitial;
+import com.example.desafioSpring.domain.validator.evento.GetStatusConcluido;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @GetCancel
 @GetInitial
+@GetStatusConcluido
 public class EventoUpdate extends EventoBase {
     @NotNull
     private Integer idEventoStatus;

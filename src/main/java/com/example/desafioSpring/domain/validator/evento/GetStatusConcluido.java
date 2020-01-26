@@ -10,17 +10,17 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * GetInitial
+ * getStatusConcluido
  */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = InitialValidator.class)
+@Constraint(validatedBy = CancelValidator.class)
 @Documented
-public @interface GetInitial {
+public @interface GetStatusConcluido {
     String message() default "Data invalida.";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
+    
 }

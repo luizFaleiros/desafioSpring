@@ -8,7 +8,6 @@ import javax.validation.ConstraintValidatorContext;
 
 import com.example.desafioSpring.domain.dto.evento.request.EventoUpdate;
 
-
 /**
  * Datealidator
  */
@@ -16,21 +15,31 @@ public class CancelValidator implements ConstraintValidator<GetDateValidator, Ev
 
     @Override
     public boolean isValid(EventoUpdate value, ConstraintValidatorContext context) {
-        if(value == null){
+        if (value == null) {
             return false;
         }
-        if(value.getDataHoraInicio() == null){
+        if (value.getDataHoraInicio() == null) {
             return false;
         }
-        if(value.getIdEventoStatus() == null){
+        if (value.getIdEventoStatus() == null) {
             return false;
         }
         Calendar daata = Calendar.getInstance();
         daata.setTime(new Date());
+        daata.set(Calendar.HOUR, 0);
+        daata.set(Calendar.MINUTE, 0);
+        daata.set(Calendar.SECOND, 0);
+        daata.set(Calendar.MILLISECOND, 1);
+
         Calendar inicio = Calendar.getInstance();
         inicio.setTime(value.getDataHoraInicio());
-        if ((value.getIdEventoStatus() == 4) && (inicio.get(Calendar.DATE) <= daata.get(Calendar.DATE))) {
-            return false;
+        Calendar fim = Calendar.getInstance();
+        fim.setTime(value.getDataHoraInicio());
+        if (value.getIdEventoStatus() == 4 && inicio.getTimeInMillis() >= daata.getTimeInMillis()) {
+            if(daata.getTimeInMillis() < fim.getTimeInMillis()){
+                return false;
+            }
+            return true;
         }
         return true;
     }
