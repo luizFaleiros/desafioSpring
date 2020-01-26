@@ -5,15 +5,15 @@ import java.util.Calendar;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.example.desafioSpring.domain.dto.evento.request.EventoRequest;
+import com.example.desafioSpring.domain.dto.evento.request.EventoBase;
 
 /**
  * Datealidator
  */
-public class DateValidator implements ConstraintValidator<GetDateValidator, EventoRequest> {
+public class DateValidator implements ConstraintValidator<GetDateValidator, EventoBase> {
 
     @Override
-    public boolean isValid(EventoRequest value, ConstraintValidatorContext context) {
+    public boolean isValid(EventoBase value, ConstraintValidatorContext context) {
         Calendar inicio = Calendar.getInstance();
         Calendar fim = Calendar.getInstance();
         if (value.getDataHoraFim() == null || value.getDataHoraInicio() == null) {
@@ -30,7 +30,6 @@ public class DateValidator implements ConstraintValidator<GetDateValidator, Even
         }
         return false;
     }
-    
     private Boolean validaData(Calendar ini, Calendar fim) {
         Calendar c = Calendar.getInstance();
         if ((c.get(Calendar.DATE) >= ini.get(Calendar.DATE))) {

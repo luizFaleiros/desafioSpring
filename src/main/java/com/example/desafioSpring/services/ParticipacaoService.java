@@ -1,5 +1,6 @@
 package com.example.desafioSpring.services;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class ParticipacaoService {
     }
 
     public Participacao cadastrarParticipacao(Participacao model) {
-        if(!this.JaInscrito(model.getEvento().getIdEvento(),model.getLoginParticipante())){
+        if (!this.JaInscrito(model.getEvento().getIdEvento(), model.getLoginParticipante())) {
             throw new DataCantBeCreate("Usuario ja cadastrado");
         }
         model.setFlagPresente(false);
@@ -62,5 +63,28 @@ public class ParticipacaoService {
             return false;
         }
         return true;
+    }
+
+    public Boolean ChangeFlag(Integer id, Participacao model) {
+        Participacao participacao = findById(id);
+        Calendar c = Calendar.getInstance();
+        Long l = participacao.getEvento().getDataHoraInicio().getTime();
+        Long t = c.getTimeInMillis();
+        if(t > l ){
+            participacao.setFlagPresente(model.getFlagPresente());
+            participacaoRepository.save(participacao);
+            return true;
+        }
+        throw new DataNotFoundException("Ainda não começou evento 😘");
+    }
+
+    public Participacao comentario(Integer id, Participacao model) {
+        Participacao participacao = findById(id);
+        if(participacao.getFlagPresente()){
+            participacao.setComentario(model.getComentario());
+            participacao.setNota(model.getNota());
+            return participacaoRepository.save(participacao);
+        }
+        throw new DataNotFoundException("Pessoa não participou");
     }
 }

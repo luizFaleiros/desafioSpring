@@ -1,9 +1,9 @@
 package com.example.desafioSpring.domain.dto.participacao.request;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 /**
  * ParticipacaoCommentRequest
@@ -11,8 +11,8 @@ import lombok.experimental.SuperBuilder;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
-public class ParticipacaoCommentRequest extends ParticipacaoStatusFlagUpdate{
+@Builder
+public class ParticipacaoCommentRequest{
 
     private Integer nota;
 

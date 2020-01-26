@@ -1,5 +1,6 @@
 package com.example.desafioSpring.domain.mapper;
 
+import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoCommentRequest;
 import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoRequest;
 import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoStatusFlagUpdate;
 import com.example.desafioSpring.domain.dto.participacao.response.ParticipacaoResponse;
@@ -34,4 +35,7 @@ public class ParticipacaoMapper {
         return mapper.map(model, Participacao.class);
     }
 
+    public Participacao fromDtoCommentUpdate(ParticipacaoCommentRequest model){
+        return mapper.map(model, Participacao.class);
+    }
 }

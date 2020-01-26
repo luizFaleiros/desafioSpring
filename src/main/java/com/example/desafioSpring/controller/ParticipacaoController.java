@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoCommentRequest;
 import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoRequest;
 import com.example.desafioSpring.domain.dto.participacao.request.ParticipacaoStatusFlagUpdate;
 import com.example.desafioSpring.domain.dto.participacao.response.ParticipacaoResponse;
@@ -18,13 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 
 /**
  * ParticipacaoController
@@ -70,8 +71,10 @@ public class ParticipacaoController {
     }
 
     @PutMapping(value = "/presente/{id}")
-    public ResponseEntity<ParticipacaoResponse> putPresente(@PathVariable Integer id, @Valid @RequestBody ParticipacaoStatusFlagUpdate model) {
+    public ResponseEntity<ParticipacaoResponse> putPresente(@PathVariable Integer id,
+            @Valid @RequestBody ParticipacaoStatusFlagUpdate model) {
         Participacao participacao = mapper.fromDtoFlagUpdate(model);
+        participacaoService.ChangeFlag(id, participacao);
         return ResponseEntity.ok(mapper.toDto(participacao));
     }
 
@@ -88,5 +91,12 @@ public class ParticipacaoController {
         return qnt != null ? qnt : 0;
     }
 
+    @PatchMapping(value = "/comentario/{id}")
+    public ResponseEntity<ParticipacaoResponse> requestMethodName(@PathVariable Integer id,
+            @RequestBody ParticipacaoCommentRequest model) {
+        Participacao participacao = mapper.fromDtoCommentUpdate(model);
+        participacaoService.comentario(id, participacao);
+        return ResponseEntity.ok(mapper.toDto(participacao));
+    }
 
 }
