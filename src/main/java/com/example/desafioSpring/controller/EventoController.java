@@ -84,8 +84,9 @@ public class EventoController {
 	}
 	@PostMapping(value = "/dataSearch/")
 	public ResponseEntity<List<EventoResponse>> listByDate(@RequestBody EventoSearchData model){
+		List<Evento> evento = eventoService.listByData(model.getDataHoraInicio(), model.getDataHoraFim());
 		return ResponseEntity
-				.ok(eventoService.listByCategoria(id).stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
+				.ok(evento.stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
 	}
 
 }
