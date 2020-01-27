@@ -14,6 +14,12 @@ public class StatusConcluidoValidator implements ConstraintValidator<GetStatusCo
 
     @Override
     public boolean isValid(EventoUpdate value, ConstraintValidatorContext context) {
+        if(value == null){
+            return false;
+        }
+        if(value.getIdEventoStatus() == null){
+            return false;
+        }
         Calendar c = Calendar.getInstance();
         if (value.getIdEventoStatus() == 3) {
             if (c.getTimeInMillis() < value.getDataHoraInicio().getTime()) {

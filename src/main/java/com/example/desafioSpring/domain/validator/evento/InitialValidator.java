@@ -15,11 +15,14 @@ public class InitialValidator implements ConstraintValidator<GetInitial, EventoU
     @Override
     public boolean isValid(EventoUpdate value, ConstraintValidatorContext context) {
         Calendar c = Calendar.getInstance();
-        if ((value.getDataHoraInicio().getTime() > c.getTimeInMillis()) && value.getIdEventoStatus() == 2) {
-            return false;
-        }
-        if ((c.getTimeInMillis() > value.getDataHoraFim().getTime()) && value.getIdEventoStatus() == 2) {
-            return false;
+        if (value.getIdEventoStatus() == 2) {
+            if ((value.getDataHoraInicio().getTime() > c.getTimeInMillis())) {
+                return false;
+            }
+            if ((c.getTimeInMillis() > value.getDataHoraFim().getTime())) {
+                return false;
+            }
+            return true;
         }
         return true;
     }

@@ -52,9 +52,20 @@ public class InitialValidatorTest {
         assertTrue(initialValidator.isValid(testeEventoUpdate, constraintValidatorContext));
     }
     @Test
-    public void should_beNotvalid_whenEventoFimIsSmallerToday() {
+    public void should_beValid_whenStatusIsDiferentOdTwo() {
         Calendar c = Calendar.getInstance();
         c.add(Calendar.HOUR, -1);
+        Date ini = c.getTime();
+        c.add(Calendar.HOUR, 11);
+        Date fim = c.getTime();
+        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(3).DataHoraFim(fim).DataHoraInicio(ini)
+                .build();
+        assertTrue(initialValidator.isValid(testeEventoUpdate, constraintValidatorContext));
+    }
+    @Test
+    public void should_beNotvalid_whenEventoFimIsSmallerToday() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.HOUR, -2);
         Date ini = c.getTime();
         c.add(Calendar.HOUR, -1);
         Date fim = c.getTime();

@@ -35,11 +35,12 @@ public class CancelValidator implements ConstraintValidator<GetDateValidator, Ev
         inicio.setTime(value.getDataHoraInicio());
         Calendar fim = Calendar.getInstance();
         fim.setTime(value.getDataHoraInicio());
-        if (value.getIdEventoStatus() == 4 && inicio.getTimeInMillis() >= daata.getTimeInMillis()) {
-            if(daata.getTimeInMillis() < fim.getTimeInMillis()){
+        if (value.getIdEventoStatus() == 4) {
+            if (inicio.getTimeInMillis() >= daata.getTimeInMillis()) {
+
                 return false;
+
             }
-            return true;
         }
         return true;
     }

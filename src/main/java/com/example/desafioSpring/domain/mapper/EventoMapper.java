@@ -26,5 +26,4 @@ public class EventoMapper {
         return mapper.map(input, Evento.class);
     }
 
-
-} 
+}

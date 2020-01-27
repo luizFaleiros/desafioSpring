@@ -1,6 +1,5 @@
 package com.example.desafioSpring.domain.entities;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,4 +25,4 @@ public class CategoriaEvento {
     @Column(nullable = false, length = 250)
     private String nomeCategoria;
 
-} 
+}
