@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import com.example.desafioSpring.domain.dto.evento.request.EventoRequest;
+import com.example.desafioSpring.domain.dto.evento.request.EventoSearchData;
 import com.example.desafioSpring.domain.dto.evento.request.EventoUpdate;
 import com.example.desafioSpring.domain.dto.evento.response.EventoResponse;
 import com.example.desafioSpring.domain.entities.Evento;
@@ -78,6 +79,11 @@ public class EventoController {
 
 	@GetMapping(value = "/categoria/{id}")
 	public ResponseEntity<List<EventoResponse>> findByCategoria(@Valid @PathVariable Integer id) {
+		return ResponseEntity
+				.ok(eventoService.listByCategoria(id).stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
+	}
+	@PostMapping(value = "/dataSearch/")
+	public ResponseEntity<List<EventoResponse>> listByDate(@RequestBody EventoSearchData model){
 		return ResponseEntity
 				.ok(eventoService.listByCategoria(id).stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
 	}
