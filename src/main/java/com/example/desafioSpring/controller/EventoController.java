@@ -66,26 +66,20 @@ public class EventoController {
 	public ResponseEntity<EventoResponse> put(@Valid @PathVariable Integer id, @RequestBody EventoUpdate model) {
 		Evento evento = eventoService.findById(id);
 		evento.setDataHoraFim(model.getDataHoraFim());
-        evento.setDataHoraInicio(model.getDataHoraInicio());
-        evento.setDescricao(model.getDescricao());
-        evento.setLimiteVagas(model.getLimiteVagas());
-        evento.setLocal(model.getLocal());
-        evento.setNome(model.getNome());
-        evento.setCategoriaEvento(categoriaEventoService.findById(model.getIdCategoriaEvento()));
-        evento.setEventoStatus(eventoStatusService.findById(model.getIdEventoStatus()));
+		evento.setDataHoraInicio(model.getDataHoraInicio());
+		evento.setDescricao(model.getDescricao());
+		evento.setLimiteVagas(model.getLimiteVagas());
+		evento.setLocal(model.getLocal());
+		evento.setNome(model.getNome());
+		evento.setCategoriaEvento(categoriaEventoService.findById(model.getIdCategoriaEvento()));
+		evento.setEventoStatus(eventoStatusService.findById(model.getIdEventoStatus()));
 		return ResponseEntity.ok(mapper.toDto(eventoService.cadastroEvento(evento)));
 	}
+
 	@GetMapping(value = "/categoria/{id}")
 	public ResponseEntity<List<EventoResponse>> findByCategoria(@Valid @PathVariable Integer id) {
 		return ResponseEntity
 				.ok(eventoService.listByCategoria(id).stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
-	
 	}
-
-	// @DeleteMapping(value = "/{id}")
-	// public Boolean delete(@PathVariable Integer id) {
-	// 	eventoService.deleteEvento(id);
-	// 	return true;
-	// }
 
 }

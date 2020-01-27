@@ -1,5 +1,6 @@
 package com.example.desafioSpring.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,5 @@ public class EventoService {
     public List<Evento> listByCategoria(Integer id) {
         CategoriaEvento categoriaEvento =  categoriaEventoService.findById(id);
         return eventoRepository.findByCategoriaEvento(categoriaEvento);
-
     }
 }

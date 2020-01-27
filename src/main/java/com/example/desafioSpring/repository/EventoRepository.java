@@ -3,7 +3,6 @@ package com.example.desafioSpring.repository;
 import java.util.Date;
 import java.util.List;
 
-import com.example.desafioSpring.domain.dto.evento.response.EventoResponse;
 import com.example.desafioSpring.domain.entities.CategoriaEvento;
 import com.example.desafioSpring.domain.entities.Evento;
 
@@ -17,6 +16,7 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
     String QuemEstaInscrito(Integer id);
 
     List<Evento> findByCategoriaEvento(CategoriaEvento categoriaEvento);
+    List<Evento> findByDataHoraInicioBetween(Date dataHoraInicio, Date dataHoraFim);
 
 
 }
