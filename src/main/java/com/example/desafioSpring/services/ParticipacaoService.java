@@ -50,7 +50,7 @@ public class ParticipacaoService {
         try {
             participacaoRepository.deleteById(id);
         } catch (Exception e) {
-            new DataCantDeleteException("Impossibru", e);
+            new DataCantDeleteException("Impossibru, tenha um bom dia");
         }
     }
 
@@ -65,15 +65,14 @@ public class ParticipacaoService {
         return true;
     }
 
-    public Boolean ChangeFlag(Integer id, Participacao model) {
+    public Participacao ChangeFlag(Integer id, Participacao model) {
         Participacao participacao = findById(id);
         Calendar c = Calendar.getInstance();
         Long l = participacao.getEvento().getDataHoraInicio().getTime();
         Long t = c.getTimeInMillis();
         if(t > l ){
             participacao.setFlagPresente(model.getFlagPresente());
-            participacaoRepository.save(participacao);
-            return true;
+            return participacaoRepository.save(participacao);
         }
         throw new DataNotFoundException("Ainda não começou evento 😘");
     }

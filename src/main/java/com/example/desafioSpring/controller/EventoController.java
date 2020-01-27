@@ -75,6 +75,12 @@ public class EventoController {
         evento.setEventoStatus(eventoStatusService.findById(model.getIdEventoStatus()));
 		return ResponseEntity.ok(mapper.toDto(eventoService.cadastroEvento(evento)));
 	}
+	@GetMapping(value = "/categoria/{id}")
+	public ResponseEntity<List<EventoResponse>> findByCategoria(@Valid @PathVariable Integer id) {
+		return ResponseEntity
+				.ok(eventoService.listByCategoria(id).stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
+	
+	}
 
 	// @DeleteMapping(value = "/{id}")
 	// public Boolean delete(@PathVariable Integer id) {

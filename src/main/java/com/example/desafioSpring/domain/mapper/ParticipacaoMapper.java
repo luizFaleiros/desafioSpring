@@ -23,19 +23,20 @@ public class ParticipacaoMapper {
         this.mapper = mapper;
     }
 
-    public ParticipacaoResponse toDto(Participacao input){
+    public ParticipacaoResponse toDto(Participacao input) {
         return mapper.map(input, ParticipacaoResponse.class);
     }
-    
+
     public Participacao fromDto(ParticipacaoRequest model) {
         return mapper.map(model, Participacao.class);
-        
+
     }
-    public Participacao fromDtoFlagUpdate(ParticipacaoStatusFlagUpdate model){
+
+    public Participacao fromDtoFlagUpdate(ParticipacaoStatusFlagUpdate model) {
         return mapper.map(model, Participacao.class);
     }
 
-    public Participacao fromDtoCommentUpdate(ParticipacaoCommentRequest model){
+    public Participacao fromDtoCommentUpdate(ParticipacaoCommentRequest model) {
         return mapper.map(model, Participacao.class);
     }
 }
