@@ -53,8 +53,8 @@ public class EventoMapperTest {
     @Test
     public void should_beConvert_EventoRequest_ToEvento() {
 
-        EventoRequest dto = EventoRequest.builder().DataHoraFim(new Date()).DataHoraInicio(new Date())
-                .Descricao("Teste").LimiteVagas(10).Local("La em casa").idCategoriaEvento(1).nome("Teste").build();
+        EventoRequest dto = EventoRequest.builder().dataHoraFim(new Date()).dataHoraInicio(new Date())
+                .descricao("Teste").limiteVagas(10).local("La em casa").idCategoriaEvento(1).nome("Teste").build();
         Evento evento = mapper.fromDto(dto);
 
         assertEquals("Valor inesperado", dto.getDataHoraFim(), evento.getDataHoraFim());

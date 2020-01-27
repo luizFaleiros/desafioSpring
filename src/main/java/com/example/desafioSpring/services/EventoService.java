@@ -41,28 +41,12 @@ public class EventoService {
 
     
 
-    public boolean deleteEvento(Integer id) {
-        findById(id);
-        try {
-            eventoRepository.deleteById(id);
-            return true;
-        } catch (Exception e) {
-            throw new DataCantDeleteException("Não pode ser deletado");
-        }
-    }
-
-    public Evento updateEvento(Integer id, EventoUpdate model) {
-        Evento evento = findById(id);
-        evento.setDataHoraFim(model.getDataHoraFim());
-        evento.setDataHoraInicio(model.getDataHoraInicio());
-        evento.setDescricao(model.getDescricao());
-        evento.setLimiteVagas(model.getLimiteVagas());
-        evento.setLocal(model.getLocal());
-        evento.setNome(model.getNome());
-        evento.setCategoriaEvento(categoriaEventoService.findById(model.getIdCategoriaEvento()));
-        evento.setEventoStatus(eventoStatusService.findById(model.getIdEventoStatus()));
-        return eventoRepository.save(evento);
-
-    }
-
+    // public void deleteEvento(Integer id) {
+    //     findById(id);
+    //     try {
+    //         eventoRepository.deleteById(id);
+    //     } catch (Exception e) {
+    //         throw new DataCantDeleteException("Não pode ser deletado");
+    //     }
+    // }
 }

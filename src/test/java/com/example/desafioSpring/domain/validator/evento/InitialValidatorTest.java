@@ -36,7 +36,7 @@ public class InitialValidatorTest {
         Date ini = c.getTime();
         c.set(Calendar.HOUR, 11);
         Date fim = c.getTime();
-        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(2).DataHoraFim(fim).DataHoraInicio(ini)
+        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(2).dataHoraFim(fim).dataHoraInicio(ini)
                 .build();
         assertFalse(initialValidator.isValid(testeEventoUpdate, constraintValidatorContext));
     }
@@ -47,7 +47,7 @@ public class InitialValidatorTest {
         Date ini = c.getTime();
         c.add(Calendar.HOUR, 11);
         Date fim = c.getTime();
-        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(2).DataHoraFim(fim).DataHoraInicio(ini)
+        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(2).dataHoraFim(fim).dataHoraInicio(ini)
                 .build();
         assertTrue(initialValidator.isValid(testeEventoUpdate, constraintValidatorContext));
     }
@@ -58,7 +58,7 @@ public class InitialValidatorTest {
         Date ini = c.getTime();
         c.add(Calendar.HOUR, 11);
         Date fim = c.getTime();
-        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(3).DataHoraFim(fim).DataHoraInicio(ini)
+        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(3).dataHoraFim(fim).dataHoraInicio(ini)
                 .build();
         assertTrue(initialValidator.isValid(testeEventoUpdate, constraintValidatorContext));
     }
@@ -69,7 +69,7 @@ public class InitialValidatorTest {
         Date ini = c.getTime();
         c.add(Calendar.HOUR, -1);
         Date fim = c.getTime();
-        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(2).DataHoraFim(fim).DataHoraInicio(ini)
+        EventoUpdate testeEventoUpdate = EventoUpdate.builder().idEventoStatus(2).dataHoraFim(fim).dataHoraInicio(ini)
                 .build();
         assertFalse(initialValidator.isValid(testeEventoUpdate, constraintValidatorContext));
     }

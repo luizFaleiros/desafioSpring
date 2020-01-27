@@ -31,10 +31,12 @@ public class StatusConcluidoValidatorTest {
         EventoUpdate eventoUpdate = EventoUpdate.builder().idEventoStatus(4).build();
         assertTrue(statusConcluidoValidator.isValid(eventoUpdate, constraintValidatorContext));
     }
+
     @Test
     public void should_beInvalid_whenEventoUpdateisNull() {
         assertFalse(statusConcluidoValidator.isValid(null, constraintValidatorContext));
     }
+
     @Test
     public void should_beInValid_WhenStatusIsNull() {
         EventoUpdate eventoUpdate = EventoUpdate.builder().idEventoStatus(null).build();
@@ -45,9 +47,9 @@ public class StatusConcluidoValidatorTest {
     public void should_beInvalid_whenStatusIsThreeAndtodayIsBiggerThanInicio() {
         Calendar ini = Calendar.getInstance();
         ini.set(Calendar.HOUR, -1);
-        
-        EventoUpdate eventoUpdate = EventoUpdate.builder().idEventoStatus(3).DataHoraInicio(ini.getTime()).build();
-        
+
+        EventoUpdate eventoUpdate = EventoUpdate.builder().idEventoStatus(3).dataHoraInicio(ini.getTime()).build();
+
         assertFalse(statusConcluidoValidator.isValid(eventoUpdate, constraintValidatorContext));
     }
 
@@ -55,9 +57,9 @@ public class StatusConcluidoValidatorTest {
     public void should_beValid_whenStatusIsThreeAndtodayIsSmallerThanInicio() {
         Calendar ini = Calendar.getInstance();
         ini.add(Calendar.HOUR, 1);
-        
-        EventoUpdate eventoUpdate = EventoUpdate.builder().idEventoStatus(3).DataHoraInicio(ini.getTime()).build();
-        
+
+        EventoUpdate eventoUpdate = EventoUpdate.builder().idEventoStatus(3).dataHoraInicio(ini.getTime()).build();
+
         assertTrue(statusConcluidoValidator.isValid(eventoUpdate, constraintValidatorContext));
     }
 

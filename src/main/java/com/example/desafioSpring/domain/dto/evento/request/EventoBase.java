@@ -32,19 +32,19 @@ public abstract class EventoBase {
     protected String nome;
 
     @NotNull
-    protected Date DataHoraInicio;
+    protected Date dataHoraInicio;
 
     @NotNull
-    protected Date DataHoraFim;
+    protected Date dataHoraFim;
 
     @NotEmpty
-    protected String Local;
+    protected String local;
 
     @NotEmpty
-    protected String Descricao;
+    protected String descricao;
 
     @NotNull
     @Min(value = 1)
-    protected Integer LimiteVagas;
+    protected Integer limiteVagas;
 
 }

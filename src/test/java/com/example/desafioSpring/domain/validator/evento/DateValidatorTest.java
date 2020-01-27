@@ -29,11 +29,11 @@ public class DateValidatorTest {
     @InjectMocks
     DateValidator dateValidator;
 
-    private Date DataHoraInicio = new Date();
+    private Date dataHoraInicio = new Date();
 
-    private Date DataHoraFim = new Date();
+    private Date dataHoraFim = new Date();
 
-    EventoRequest eventoRequest = EventoRequest.builder().DataHoraFim(DataHoraFim).DataHoraInicio(DataHoraInicio)
+    EventoRequest eventoRequest = EventoRequest.builder().dataHoraFim(dataHoraFim).dataHoraInicio(dataHoraInicio)
             .build();
 
     @Test
@@ -44,21 +44,21 @@ public class DateValidatorTest {
 
     @Test
     public void should_not_beValid_whenDayIniAreNull() {
-        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(new Date()).DataHoraInicio(null).build();
+        EventoRequest testeEventoRequest = EventoRequest.builder().dataHoraFim(new Date()).dataHoraInicio(null).build();
 
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
 
     @Test
     public void should_not_beValid_whenDayFimAreNull() {
-        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(null).DataHoraInicio(new Date()).build();
+        EventoRequest testeEventoRequest = EventoRequest.builder().dataHoraFim(null).dataHoraInicio(new Date()).build();
 
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
 
     @Test
     public void should_not_beValid_whenBothDaysAreNull() {
-        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(null).DataHoraInicio(null).build();
+        EventoRequest testeEventoRequest = EventoRequest.builder().dataHoraFim(null).dataHoraInicio(null).build();
 
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
@@ -71,7 +71,7 @@ public class DateValidatorTest {
         Date ini = c.getTime();
         c.set(Calendar.HOUR, 11);
         Date fim = c.getTime();
-        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(fim).DataHoraInicio(ini).build();
+        EventoRequest testeEventoRequest = EventoRequest.builder().dataHoraFim(fim).dataHoraInicio(ini).build();
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
 
@@ -84,7 +84,7 @@ public class DateValidatorTest {
         c.add(Calendar.DATE, 3);
         c.set(Calendar.HOUR, 11);
         Date fim = c.getTime();
-        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(fim).DataHoraInicio(ini).build();
+        EventoRequest testeEventoRequest = EventoRequest.builder().dataHoraFim(fim).dataHoraInicio(ini).build();
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
 
@@ -96,7 +96,7 @@ public class DateValidatorTest {
         Date ini = c.getTime();
         c.set(Calendar.HOUR, 11);
         Date fim = c.getTime();
-        EventoRequest testeEventoRequest = EventoRequest.builder().DataHoraFim(fim).DataHoraInicio(ini).build();
+        EventoRequest testeEventoRequest = EventoRequest.builder().dataHoraFim(fim).dataHoraInicio(ini).build();
         assertTrue(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
 
