@@ -30,5 +30,4 @@ public class EventoStatusService {
         Optional<StatusEvento> evento = eventoStatusRepository.findById(id);
         return evento.orElseThrow(() -> new DataNotFoundException("Status não encontrado"));
     }
-    
 }

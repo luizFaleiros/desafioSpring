@@ -3,9 +3,7 @@ package com.example.desafioSpring.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.desafioSpring.domain.dto.evento.request.EventoUpdate;
 import com.example.desafioSpring.domain.entities.Evento;
-import com.example.desafioSpring.exception.DataCantDeleteException;
 import com.example.desafioSpring.exception.DataNotFoundException;
 import com.example.desafioSpring.repository.EventoRepository;
 
@@ -15,15 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class EventoService {
     private EventoRepository eventoRepository;
-    private EventoStatusService eventoStatusService;
-    private CategoriaEventoService categoriaEventoService;
 
     @Autowired
     public EventoService(EventoRepository eventoRepository, EventoStatusService eventoStatusService,
             CategoriaEventoService categoriaEventoService) {
         this.eventoRepository = eventoRepository;
-        this.eventoStatusService = eventoStatusService;
-        this.categoriaEventoService = categoriaEventoService;
     }
 
     public List<Evento> listEvento() {
