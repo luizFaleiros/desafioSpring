@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import com.example.desafioSpring.domain.dto.evento.request.EventoRequest;
 import com.example.desafioSpring.domain.dto.evento.request.EventoSearchData;
 import com.example.desafioSpring.domain.dto.evento.request.EventoUpdate;
+import com.example.desafioSpring.domain.dto.evento.request.StatusChange;
 import com.example.desafioSpring.domain.dto.evento.response.EventoResponse;
 import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.domain.mapper.EventoMapper;
@@ -18,6 +19,7 @@ import com.example.desafioSpring.services.EventoStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -88,5 +90,10 @@ public class EventoController {
 		return ResponseEntity
 				.ok(evento.stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
 	}
-
+	
+	@PatchMapping(value = "/Status/{id}")
+	public ResponseEntity<EventoResponse> putStatusChange(@Valid @RequestBody StatusChange model, @PathVariable Integer id){
+		Evento evento = mapper.fromDtoStatusChange(model);
+		return ResponseEntity.ok(mapper.toDto(eventoService.putStatusChange(id, evento)));
+	}
 }

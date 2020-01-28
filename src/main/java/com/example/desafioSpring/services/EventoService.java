@@ -41,7 +41,14 @@ public class EventoService {
         CategoriaEvento categoriaEvento =  categoriaEventoService.findById(id);
         return eventoRepository.findByCategoriaEvento(categoriaEvento);
     }
+
     public List<Evento> listByData(Date ini, Date fim){
         return eventoRepository.findByDataHoraInicioBetween(ini, fim);
+    }
+
+    public Evento putStatusChange(Integer id, Evento model){
+        Evento evento = findById(id);
+        evento.setEventoStatus(model.getEventoStatus());
+        return eventoRepository.save(evento);
     }
 }
