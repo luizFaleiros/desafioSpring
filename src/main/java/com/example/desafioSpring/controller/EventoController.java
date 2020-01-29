@@ -10,6 +10,7 @@ import com.example.desafioSpring.domain.dto.evento.request.EventoSearchData;
 import com.example.desafioSpring.domain.dto.evento.request.EventoUpdate;
 import com.example.desafioSpring.domain.dto.evento.request.StatusChange;
 import com.example.desafioSpring.domain.dto.evento.response.EventoResponse;
+import com.example.desafioSpring.domain.entities.CategoriaEvento;
 import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.domain.mapper.EventoMapper;
 import com.example.desafioSpring.services.CategoriaEventoService;
@@ -81,8 +82,9 @@ public class EventoController {
 
 	@GetMapping(value = "/categoria/{id}")
 	public ResponseEntity<List<EventoResponse>> findByCategoria(@Valid @PathVariable Integer id) {
+		CategoriaEvento categoriaEvento =  categoriaEventoService.findById(id);
 		return ResponseEntity
-				.ok(eventoService.listByCategoria(id).stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
+				.ok(eventoService.listByCategoria(categoriaEvento).stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
 	}
 	@PostMapping(value = "/dataSearch/")
 	public ResponseEntity<List<EventoResponse>> listByDate(@RequestBody EventoSearchData model){
@@ -90,7 +92,7 @@ public class EventoController {
 		return ResponseEntity
 				.ok(evento.stream().map(x -> mapper.toDto(x)).collect(Collectors.toList()));
 	}
-	
+
 	@PatchMapping(value = "/Status/{id}")
 	public ResponseEntity<EventoResponse> putStatusChange(@Valid @RequestBody StatusChange model, @PathVariable Integer id){
 		Evento evento = mapper.fromDtoStatusChange(model);

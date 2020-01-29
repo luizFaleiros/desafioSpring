@@ -1,11 +1,13 @@
 package com.example.desafioSpring.domain.mapper;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Date;
 
 import com.example.desafioSpring.configuration.MapperConfig;
 import com.example.desafioSpring.domain.dto.evento.request.EventoRequest;
+import com.example.desafioSpring.domain.dto.evento.request.StatusChange;
 import com.example.desafioSpring.domain.dto.evento.response.EventoResponse;
 import com.example.desafioSpring.domain.entities.CategoriaEvento;
 import com.example.desafioSpring.domain.entities.Evento;
@@ -63,6 +65,15 @@ public class EventoMapperTest {
         assertEquals("Valor inesperado", dto.getLimiteVagas(), evento.getLimiteVagas());
         assertEquals("Valor inesperado", dto.getLocal(), evento.getLocal());
         assertEquals("Valor inesperado", dto.getNome(), evento.getNome());
+    }
+
+    @Test
+    public void should_be_convert_StatusChanve_to_StatusEvento() {
+        StatusChange statusChange = StatusChange.builder().idEventoStatus(1).build();
+
+        Evento evento = mapper.fromDtoStatusChange(statusChange);
+
+       assertNotNull("Valor inesperado", evento);
     }
 
 }

@@ -34,4 +34,5 @@ public class CategoriaEventoMapperTest {
                 categoriaEventoResponse.getIdCategoriaEvento());
         assertEquals("Valor definido invalido", categoriaEvento.getNomeCategoria(), categoriaEventoResponse.getNomeCategoria());
     }
+ 
 }

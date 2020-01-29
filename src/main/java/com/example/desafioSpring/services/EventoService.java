@@ -37,8 +37,7 @@ public class EventoService {
         return eventoRepository.save(model);
     }
 
-    public List<Evento> listByCategoria(Integer id) {
-        CategoriaEvento categoriaEvento =  categoriaEventoService.findById(id);
+    public List<Evento> listByCategoria(CategoriaEvento categoriaEvento) {
         return eventoRepository.findByCategoriaEvento(categoriaEvento);
     }
 

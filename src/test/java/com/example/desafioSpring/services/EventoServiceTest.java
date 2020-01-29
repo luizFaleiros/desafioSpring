@@ -2,6 +2,7 @@ package com.example.desafioSpring.services;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
@@ -14,6 +15,7 @@ import com.example.desafioSpring.domain.entities.CategoriaEvento;
 import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.domain.entities.StatusEvento;
 import com.example.desafioSpring.exception.DataNotFoundException;
+import com.example.desafioSpring.repository.CategoriaEventoRepository;
 import com.example.desafioSpring.repository.EventoRepository;
 
 import org.junit.Rule;
@@ -94,7 +96,43 @@ public class EventoServiceTest {
 
         verify(repositoryMock, times(1)).findAll();
         assertNotNull("Array não deve ser nulo", model);
-        assertEquals("Array deve conter um item", 1, model.size());
         assertEquals("Array deve ser do tipo Evento", entity.getIdEvento(), model.get(0).getIdEvento());
+    }
+
+    @Test
+    public void should_listByCategoria() {
+        List<Evento> list = new ArrayList<Evento>();
+        list.add(entity);
+        when(repositoryMock.findByCategoriaEvento(categoriaEvento)).thenReturn(list);
+
+        List<Evento> model = eventoService.listByCategoria(categoriaEvento);
+
+        verify(repositoryMock, times(1)).findByCategoriaEvento(categoriaEvento);
+        assertNotNull("Array não pode ser nul", model);
+        assertEquals("Array deve conter um item", 1, model.size());
+    }
+
+    @Test
+    public void should_listByDate() {
+        List<Evento> list = new ArrayList<Evento>();
+        list.add(entity);
+
+        when(repositoryMock.findByDataHoraInicioBetween(dataHoraInicio, dataHoraFim)).thenReturn(list);
+
+        List<Evento> model = eventoService.listByData(dataHoraInicio, dataHoraFim);
+
+        verify(repositoryMock, times(1)).findByDataHoraInicioBetween(dataHoraInicio, dataHoraFim);
+        assertNotNull("Array não pode ser null", model);
+        assertEquals("Array deve conter um item", 1, model.size());
+    }
+
+    @Test
+    public void should_putStatusChange() {
+        when(repositoryMock.findById(anyInt())).thenReturn(Optional.of(entity));
+        when(repositoryMock.save(entity)).thenReturn(entity);
+
+        Evento evento = eventoService.putStatusChange(1,entity);
+
+        assertNotNull("Array não pode ser null", evento);
     }
 }
