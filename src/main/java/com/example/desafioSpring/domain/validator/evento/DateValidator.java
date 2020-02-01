@@ -32,7 +32,7 @@ public class DateValidator implements ConstraintValidator<GetDateValidator, Even
     }
     private Boolean validaData(Calendar ini, Calendar fim) {
         Calendar c = Calendar.getInstance();
-        if ((c.get(Calendar.DATE) >= ini.get(Calendar.DATE))) {
+        if ((c.getTimeInMillis() >= ini.getTimeInMillis())) {
             return false;
         }
         Long dia = (24*60*60*1000)-1L;

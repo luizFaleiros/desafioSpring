@@ -48,6 +48,17 @@ public class DateValidatorTest {
 
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
+    @Test
+    public void should_not_valid_whenDayIsLessToday(){
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, -4);
+        c.set(Calendar.HOUR, 10);
+        Date ini = c.getTime();
+        c.set(Calendar.HOUR, 11);
+        Date fim = c.getTime();
+        EventoRequest testeEventoRequest = EventoRequest.builder().dataHoraFim(fim).dataHoraInicio(ini).build();
+        assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
+    }
 
     @Test
     public void should_not_beValid_whenDayFimAreNull() {
@@ -60,18 +71,6 @@ public class DateValidatorTest {
     public void should_not_beValid_whenBothDaysAreNull() {
         EventoRequest testeEventoRequest = EventoRequest.builder().dataHoraFim(null).dataHoraInicio(null).build();
 
-        assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
-    }
-
-    @Test
-    public void Should_beNot_Valid_whenDayiniIsSmallerToDay() {
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE, -2);
-        c.set(Calendar.HOUR, 10);
-        Date ini = c.getTime();
-        c.set(Calendar.HOUR, 11);
-        Date fim = c.getTime();
-        EventoRequest testeEventoRequest = EventoRequest.builder().dataHoraFim(fim).dataHoraInicio(ini).build();
         assertFalse(dateValidator.isValid(testeEventoRequest, constraintValidatorContext));
     }
 
