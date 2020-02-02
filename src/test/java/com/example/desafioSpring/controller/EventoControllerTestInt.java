@@ -214,6 +214,11 @@ public class EventoControllerTestInt {
 
         @Test
         public void should_changeStatus_whenStatusAndDateIsValid() throws JsonProcessingException, Exception {
+                Calendar ini = Calendar.getInstance();
+                ini.add(Calendar.DAY_OF_MONTH, 2);
+                Calendar fim = Calendar.getInstance();
+                fim.add(Calendar.DAY_OF_MONTH, 2);
+                fim.add(Calendar.HOUR, 4);
 
                 StatusEvento statusEvento = StatusEvento.builder().idEventoStatus(1).NomeStatus("Nome").build();
                 eventoStatusRepository.saveAndFlush(statusEvento);
@@ -222,7 +227,7 @@ public class EventoControllerTestInt {
                                 .build();
                 categoriaEventoRepository.saveAndFlush(categoriaEvento);
 
-                Evento model = Evento.builder().dataHoraFim(new Date()).dataHoraInicio(new Date())
+                Evento model = Evento.builder().dataHoraFim(fim.getTime()).dataHoraInicio(ini.getTime())
                                 .descricao("Descricao do evento").idEvento(1).limiteVagas(10).local("Local do evento")
                                 .nome("Nomde do evento").categoriaEvento(categoriaEvento).eventoStatus(statusEvento)
                                 .build();
@@ -239,9 +244,5 @@ public class EventoControllerTestInt {
                 EventoResponse response = mapper.readValue(result.getResponse().getContentAsString(),
                                 EventoResponse.class);
 
-        }
-
-        private MockHttpServletRequestBuilder patch(String string) {
-                return null;
         }
 }
