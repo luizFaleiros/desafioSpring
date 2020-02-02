@@ -9,6 +9,7 @@ import java.util.Date;
 import com.example.desafioSpring.domain.dto.evento.request.EventoRequest;
 import com.example.desafioSpring.domain.dto.evento.request.EventoSearchData;
 import com.example.desafioSpring.domain.dto.evento.request.EventoUpdate;
+import com.example.desafioSpring.domain.dto.evento.request.StatusChange;
 import com.example.desafioSpring.domain.dto.evento.response.EventoResponse;
 import com.example.desafioSpring.domain.entities.CategoriaEvento;
 import com.example.desafioSpring.domain.entities.Evento;
@@ -26,12 +27,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -207,5 +210,38 @@ public class EventoControllerTestInt {
                                 .andExpect(MockMvcResultMatchers.content()
                                                 .contentType(MediaType.APPLICATION_JSON_UTF8));
 
+        }
+
+        @Test
+        public void should_changeStatus_whenStatusAndDateIsValid() throws JsonProcessingException, Exception {
+
+                StatusEvento statusEvento = StatusEvento.builder().idEventoStatus(1).NomeStatus("Nome").build();
+                eventoStatusRepository.saveAndFlush(statusEvento);
+
+                CategoriaEvento categoriaEvento = CategoriaEvento.builder().idCategoriaEvento(1).nomeCategoria("nome")
+                                .build();
+                categoriaEventoRepository.saveAndFlush(categoriaEvento);
+
+                Evento model = Evento.builder().dataHoraFim(new Date()).dataHoraInicio(new Date())
+                                .descricao("Descricao do evento").idEvento(1).limiteVagas(10).local("Local do evento")
+                                .nome("Nomde do evento").categoriaEvento(categoriaEvento).eventoStatus(statusEvento)
+                                .build();
+                eventoRepository.saveAndFlush(model);
+
+                StatusChange request = StatusChange.builder().idEventoStatus(1).build();
+
+                MvcResult result = mockMvc
+                                .perform(MockMvcRequestBuilders.patch("eventos/Status/" + model.getIdEvento())
+                                                .content(mapper.writeValueAsString(request))
+                                                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
+                EventoResponse response = mapper.readValue(result.getResponse().getContentAsString(),
+                                EventoResponse.class);
+
+        }
+
+        private MockHttpServletRequestBuilder patch(String string) {
+                return null;
         }
 }
