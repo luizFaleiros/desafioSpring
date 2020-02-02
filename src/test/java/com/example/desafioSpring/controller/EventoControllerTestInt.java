@@ -231,7 +231,7 @@ public class EventoControllerTestInt {
                 StatusChange request = StatusChange.builder().idEventoStatus(1).build();
 
                 MvcResult result = mockMvc
-                                .perform(MockMvcRequestBuilders.patch("eventos/Status/" + model.getIdEvento())
+                                .perform(MockMvcRequestBuilders.patch("/eventos/Status/" + model.getIdEvento())
                                                 .content(mapper.writeValueAsString(request))
                                                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
