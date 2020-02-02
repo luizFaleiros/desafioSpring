@@ -233,7 +233,7 @@ public class EventoControllerTestInt {
                                 .build();
                 eventoRepository.saveAndFlush(model);
 
-                StatusChange request = StatusChange.builder().idEventoStatus(1).build();
+                StatusChange request = StatusChange.builder().idEventoStatus(2).build();
 
                 MvcResult result = mockMvc
                                 .perform(MockMvcRequestBuilders.patch("/eventos/Status/" + model.getIdEvento())
