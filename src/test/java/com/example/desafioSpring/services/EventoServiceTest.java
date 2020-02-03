@@ -15,7 +15,6 @@ import com.example.desafioSpring.domain.entities.CategoriaEvento;
 import com.example.desafioSpring.domain.entities.Evento;
 import com.example.desafioSpring.domain.entities.StatusEvento;
 import com.example.desafioSpring.exception.DataNotFoundException;
-import com.example.desafioSpring.repository.CategoriaEventoRepository;
 import com.example.desafioSpring.repository.EventoRepository;
 
 import org.junit.Rule;
