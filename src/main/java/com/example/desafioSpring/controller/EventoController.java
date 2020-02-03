@@ -95,7 +95,7 @@ public class EventoController {
 
 	@PatchMapping(value = "/Status/{id}")
 	public ResponseEntity<EventoResponse> putStatusChange(@Valid @RequestBody StatusChange model, @PathVariable Integer id){
-		Evento evento = mapper.fromDtoStatusChange(model);
+		Evento evento = eventoService.findById(id);
 		return ResponseEntity.ok(mapper.toDto(eventoService.putStatusChange(id, evento)));
 	}
 }

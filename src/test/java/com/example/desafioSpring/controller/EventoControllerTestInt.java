@@ -1,6 +1,5 @@
 package com.example.desafioSpring.controller;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Calendar;
@@ -21,7 +20,6 @@ import com.example.desafioSpring.utils.IntegrationTestConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -212,37 +209,37 @@ public class EventoControllerTestInt {
 
         }
 
-        // @Test
-        // public void should_changeStatus_whenStatusAndDateIsValid() throws JsonProcessingException, Exception {
-        //         Calendar ini = Calendar.getInstance();
-        //         ini.add(Calendar.DAY_OF_MONTH, 2);
-        //         Calendar fim = Calendar.getInstance();
-        //         fim.add(Calendar.DAY_OF_MONTH, 2);
-        //         fim.add(Calendar.HOUR, 4);
+        @Test
+        public void should_changeStatus_whenStatusAndDateIsValid() throws JsonProcessingException, Exception {
+                Calendar ini = Calendar.getInstance();
+                ini.add(Calendar.DAY_OF_MONTH, 2);
+                Calendar fim = Calendar.getInstance();
+                fim.add(Calendar.DAY_OF_MONTH, 2);
+                fim.add(Calendar.HOUR, 4);
 
-        //         StatusEvento statusEvento = StatusEvento.builder().idEventoStatus(1).NomeStatus("Nome").build();
-        //         eventoStatusRepository.saveAndFlush(statusEvento);
+                StatusEvento statusEvento = StatusEvento.builder().idEventoStatus(1).NomeStatus("Nome").build();
+                eventoStatusRepository.saveAndFlush(statusEvento);
 
-        //         CategoriaEvento categoriaEvento = CategoriaEvento.builder().idCategoriaEvento(1).nomeCategoria("nome")
-        //                         .build();
-        //         categoriaEventoRepository.saveAndFlush(categoriaEvento);
+                CategoriaEvento categoriaEvento = CategoriaEvento.builder().idCategoriaEvento(1).nomeCategoria("nome")
+                                .build();
+                categoriaEventoRepository.saveAndFlush(categoriaEvento);
 
-        //         Evento model = Evento.builder().dataHoraFim(fim.getTime()).dataHoraInicio(ini.getTime())
-        //                         .descricao("Descricao do evento").idEvento(1).limiteVagas(10).local("Local do evento")
-        //                         .nome("Nomde do evento").categoriaEvento(categoriaEvento).eventoStatus(statusEvento)
-        //                         .build();
-        //         eventoRepository.saveAndFlush(model);
+                Evento model = Evento.builder().dataHoraFim(fim.getTime()).dataHoraInicio(ini.getTime())
+                                .descricao("Descricao do evento").idEvento(1).limiteVagas(10).local("Local do evento")
+                                .nome("Nomde do evento").categoriaEvento(categoriaEvento).eventoStatus(statusEvento)
+                                .build();
+                eventoRepository.saveAndFlush(model);
 
-        //         StatusChange request = StatusChange.builder().idEventoStatus(2).build();
+                StatusChange request = StatusChange.builder().idEventoStatus(2).build();
 
-        //         MvcResult result = mockMvc
-        //                         .perform(MockMvcRequestBuilders.patch("/eventos/Status/" + model.getIdEvento())
-        //                                         .content(mapper.writeValueAsString(request))
-        //                                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
-        //                         .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+                MvcResult result = mockMvc
+                                .perform(MockMvcRequestBuilders.patch("/eventos/Status/" + model.getIdEvento())
+                                                .content(mapper.writeValueAsString(request))
+                                                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
-        //         EventoResponse response = mapper.readValue(result.getResponse().getContentAsString(),
-        //                         EventoResponse.class);
+                EventoResponse response = mapper.readValue(result.getResponse().getContentAsString(),
+                                EventoResponse.class);
 
-        // }
+        }
 }
